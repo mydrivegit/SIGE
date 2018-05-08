@@ -6,10 +6,10 @@
       <div class="card fat col-11">
         <div class="card-body">
           <h4 class="card-title">Login</h4>
-            <form>
+            <form  @submit.prevent="login">
               <div id="email" class="form-group">
                 <label  class="text-left  w-100" >E-Mail Address</label>
-                <input type="email" class="form-control" required autofocus>
+                <input type="email" class="form-control"  v-model="user.email" required autofocus>
               </div>
               <div id="password" class="form-group">
                 <label class="text-left  w-100" >Password
@@ -17,7 +17,7 @@
                 Forgot Password?
                 </a> -->
                 </label>
-                <input type="password" class="form-control" required>
+                <input type="password" class="form-control"  v-model="user.password" required>
               </div>
               <div class="form-group">
                 <button class="btn btn-secondary btn-block">
@@ -33,6 +33,33 @@
 
 <script>
 export default {
+  data () {
+    return {
+      user: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    login () {
+      this.$store.dispatch('login', this.user)
+        .then(res => {
+          console.log(res)
+          const jwtToken = res.data.token
+          const refreshToken = res.data.refreshToken
+          localStorage.setItem('token', jwtToken)
+          localStorage.setItem('refreshToken', refreshToken)
+          if (jwtToken || refreshToken) {
+            this.$router.push({ name: 'register' })
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          this.$swal('Please provide the correct Username / Password ')
+        })
+    }
+  }
 }
 </script>
 

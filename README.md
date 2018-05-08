@@ -2,6 +2,7 @@
 
 > A Project to create SIGE(Système d'information de gestion de l'éducation)
 
+App on progress
 ## Build Setup
 
 ``` bash
@@ -20,8 +21,7 @@ npm run build --report
 # run e2e tests
 npm run e2e
 
-# run all tests
+# run all tests 
+As of now avaliable only Signup module, will integrated to all module in future
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

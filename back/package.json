@@ -4,6 +4,8 @@
   "description": "Back-End Express app for SIGE vueJs project",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
+    "seeder": "node seeder/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
