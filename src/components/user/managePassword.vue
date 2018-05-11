@@ -54,12 +54,12 @@ export default {
       this.$store.dispatch('modifyUserIdData', {data: this.passwords, id: this.$route.params.userId})
         .then(res => {
           if (res.data) {
-            this.$swal('Le mot de passe utilisateur est modifié')
+            this.$swal('Le mot de passe de l\'utilisateur est modifié')
             this.$router.push({ name: 'manageUser', params: this.users._id })
           }
         })
         .catch(err => {
-          this.$swal('Le mot de passe utilisateur est modifié pas')
+          this.$swal('Le mot de passe de l\'utilisateur n\'est pas modifié')
           res.status(304).send(err.errmsg)
         })
     }
