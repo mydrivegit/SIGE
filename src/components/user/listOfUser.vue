@@ -1,6 +1,7 @@
 <template>
 <b-container class="listofuser" fluid>
   <div class="table-responsive col-12">
+    <h5><u>Liste des utilisateurs actifs</u></h5>
     <table class="col table table-light table-hover table-list-search " id="table_format">
       <thead class="thead-light">
         <tr class="align-text-bottom">
