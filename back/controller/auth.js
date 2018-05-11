@@ -68,12 +68,11 @@ let usersLoginIn = (req, res, next) => {
           })
         }
         if (result) {
-          let userDetail = {
+          let token = jwt.sign({
             username: user[0].username,
             userId: user[0]._id,
             userRole: user[0].role
-          }
-          let token = jwt.sign({ userDetail }, process.env.JWT_SCRT1, { expiresIn: '1d' })
+          }, process.env.JWT_SCRT1, { expiresIn: '1d' })
           // let refreshToken = jwt.sign({ userDetail }, process.env.JWT_SCRT2, { expiresIn: '1d' })
           let response = {
             // message: 'Logged in',

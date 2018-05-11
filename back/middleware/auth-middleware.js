@@ -76,8 +76,8 @@ export default verifyToken
 //   const token = req.headers['x-token']
 //   if (token) {
 //     try {
-//       const { user } = jwt.verify(token, process.env.JWT_SCRT1)
-//       req.userData = user
+//       const { decoded } = jwt.verify(token, process.env.JWT_SCRT1)
+//       req.userData = decoded
 //     } catch (err) {
 //       const refreshToken = req.headers['x-refresh-token']
 //       const newTokens = await refreshTokens(token, refreshToken, process.env.JWT_SCRT1, process.env.JWT_SCRT2)

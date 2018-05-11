@@ -17,7 +17,13 @@
                 Forgot Password?
                 </a> -->
                 </label>
-                <input type="password" class="form-control"  v-model="user.password" required>
+                <input :type="passwordFieldType" class="form-control"  v-model="user.password" required>
+                <a v-if="show" class="btn btn-outline-secondary"  @click="switchVisibility();show=!show">
+                  <i  class="fa fa-eye"> Afficher</i>
+                </a>
+                <a v-else class="btn btn-outline-secondary"  @click="switchVisibility();show=!show">
+                  <i  class="fa fa-eye-slash"> Cacher</i>
+                </a>
               </div>
               <div class="form-group">
                 <button class="btn btn-secondary btn-block">
@@ -38,7 +44,9 @@ export default {
       user: {
         email: '',
         password: ''
-      }
+      },
+      passwordFieldType: 'password',
+      show: true
     }
   },
   methods: {
@@ -58,6 +66,9 @@ export default {
           console.log(err)
           this.$swal('Please provide the correct Username / Password ')
         })
+    },
+    switchVisibility () {
+      this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
     }
   }
 }

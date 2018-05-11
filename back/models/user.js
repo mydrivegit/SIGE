@@ -24,6 +24,10 @@ let UserSchema = new mongoose.Schema({
   },
   mobileNo: {
     type: Number
+  },
+  status: {
+    type: Boolean,
+    default: true
   }
 },
 {

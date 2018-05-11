@@ -61,15 +61,6 @@
                     </span>
                 </router-link>
             </li>
-            <li>
-                <a class="cursor" style="color: #999999;" @click="logout">
-                    <i aria-hidden="true" class="fa fa-sign-out">
-                    </i>
-                    <span style="margin-left:1px;">
-                        Log Out
-                    </span>
-                </a>
-            </li>
         </ul>
     </div>
   </div>
@@ -84,10 +75,6 @@ export default {
     }
   },
   methods: {
-    logout () {
-      localStorage.removeItem('token')
-      this.$router.push('/login')
-    }
   }
 }
 </script>

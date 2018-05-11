@@ -7,7 +7,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 // import users package from users
 import auth from './routes/auth'
-// import users from './routes/users'
+import users from './routes/users'
 // import messages from './routes/message'
 // import product from './routes/product'
 
@@ -31,6 +31,7 @@ app.use(bodyParser.json())
 
 //  Diecting to users file in models folder
 app.use('/auth', auth)
+app.use('/users', users)
 
 //  Handling error if there any wrong Url is requested
 app.use((req, res, next) => {

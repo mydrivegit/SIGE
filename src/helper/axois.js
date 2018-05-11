@@ -16,7 +16,6 @@ http.interceptors.request.use((config) => {
 
 http.interceptors.response.use(
   (res) => {
-    console.log(res)
     return res
   },
   (err) => {
