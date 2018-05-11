@@ -67,14 +67,13 @@ export default {
     register () {
       this.$store.dispatch('register', this.user)
         .then(res => {
-          console.log(this.user)
           if (res.status === 201) {
             this.$router.push({name: 'users'})
             this.$swal('Account ' + this.user.username + ' created Succesfully : please login')
           }
         })
         .catch(err => {
-          console.log(err)
+          return res.status(203).send(err.errmsg)
           this.$swal('Username already exist')
         })
     }

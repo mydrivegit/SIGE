@@ -26,7 +26,6 @@ let usersGetProfile = (req, res, next) => {
       })
     }
   }).catch(err => {
-    console.log(err)
     res.status(500).send({
       error: err
     })
@@ -37,7 +36,6 @@ let usersGetAllParamsid = (req, res, next) => {
   const id = req.params.id
   User.findById(id).exec().then((result) => {
     if (result) {
-      console.log(result)
       res.status(201).send({
         message: 'Here is your details for the requested ID',
         result: result
@@ -48,7 +46,6 @@ let usersGetAllParamsid = (req, res, next) => {
       })
     }
   }).catch(err => {
-    console.log(err)
     res.status(500).send({
       message: 'User not found',
       error: err.name
@@ -68,14 +65,11 @@ let usersPatchUserdetails = (req, res, next) => {
   User.update({ _id: userId }, { $set: updateOps })
     .exec()
     .then((docs) => {
-      console.log(docs)
       res.status(200).send({
         message: docs
       })
     })
     .catch((err) => {
-      console.log(err)
-      console.log(userId)
       res.status(500).send(err.errmsg)
     })
 }
@@ -92,14 +86,11 @@ let usersPatchdetailsId = (req, res, next) => {
   User.update({ _id: userId }, { $set: updateOps })
     .exec()
     .then((docs) => {
-      console.log(docs)
       res.status(200).send({
         message: docs
       })
     })
     .catch((err) => {
-      console.log(err)
-      console.log(userId)
       res.status(500).send(err.errmsg)
     })
 }

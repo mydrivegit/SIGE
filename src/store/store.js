@@ -23,7 +23,7 @@ export default new Vuex.Store({
           commit('storeUsers', res.data.content)
         })
         .catch(err => {
-          console.log(err)
+          return err.status(404).send(err.errmsg)
         })
     },
     fetchUserId ({ commit }, IdParams) {
@@ -32,7 +32,7 @@ export default new Vuex.Store({
           commit('storeUserId', res.data.result)
         })
         .catch(err => {
-          console.log(err)
+          return err.status(404).send(err.errmsg)
         })
     },
     fetchUser: ({ commit }) => http.get('/users/profile'),

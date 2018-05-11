@@ -53,7 +53,6 @@ export default {
     login () {
       this.$store.dispatch('login', this.user)
         .then(res => {
-          console.log(res)
           const jwtToken = res.data.token
           const refreshToken = res.data.refreshToken
           localStorage.setItem('token', jwtToken)
@@ -63,7 +62,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          res.status(403).send(err.errmsg)
           this.$swal('Please provide the correct Username / Password ')
         })
     },

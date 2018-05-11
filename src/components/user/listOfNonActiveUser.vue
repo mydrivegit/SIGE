@@ -46,7 +46,7 @@ export default {
           }
         })
         .catch(err => {
-          console.log(err)
+          res.status(304).send(err.errmsg)
         })
     }
   },
