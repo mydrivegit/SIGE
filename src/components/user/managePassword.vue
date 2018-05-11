@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -44,9 +45,9 @@ export default {
     this.$store.dispatch('fetchUserId', this.$route.params.userId)
   },
   computed: {
-    users () {
-      return this.$store.getters.userId
-    }
+    ...mapGetters({
+      users: 'userId'
+    })
   },
   methods: {
     modify () {
