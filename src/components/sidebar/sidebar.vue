@@ -2,66 +2,49 @@
 <div class="wrapper">
   <div :class="{toggled : toggled }">
     <div class="sidebar-wrapper" >
-        <ul class="sidebar-nav"  style="margin-left:0;">
-            <li @click="toggled = !toggled" class="sidebar-brand cursor">
-                <a  style="margin-top:20px;float:right;">
-                    <i  aria-hidden="true"  class="fa fa-bars" style="font-size:20px !Important;">
-                    </i>
-                </a>
-            </li>
-            <li>
-                <router-link class="cursor" tag="a" :to="{name: 'member'}">
-                    <i aria-hidden="true" class="fa fa-user">
-                    </i>
-                    <span style="margin-left:1px;">Membres</span>
-                </router-link>
-            </li>
-            <li>
-                <router-link class="cursor" tag="a" :to="{name: 'inscription'}">
-                    <i aria-hidden="true" class="fa fa-edit">
-                    </i>
-                    <span style="margin-left:1px;">
-                        Inscription
-                    </span>
-                </router-link>
-            </li>
-            <li>
-                <router-link class="cursor" tag="a" :to="{name: 'class'}">
-                    <i aria-hidden="true" class="fa fa-file-text">
-                    </i>
-                    <span style="margin-left:1px;">
-                        Classes
-                    </span>
-                </router-link>
-            </li>
-            <li>
-                <router-link class="cursor" tag="a" :to="{name: 'subject'}">
-                    <i aria-hidden="true" class="fa fa-tachometer">
-                    </i>
-                    <span style="margin-left:1px;">
-                        Matières
-                    </span>
-                </router-link>
-            </li>
-            <li>
-                <router-link class="cursor" tag="a" :to="{name: 'notes'}">
-                    <i aria-hidden="true" class="fa fa-comment-o">
-                    </i>
-                    <span style="margin-left:1px;">
-                        Notes
-                    </span>
-                </router-link>
-            </li>
-            <li>
-                <router-link class="cursor" tag="a" :to="{name: 'register'}">
-                    <i aria-hidden="true" class="fa fa-book">
-                    </i>
-                    <span style="margin-left:1px;">
-                        Registration
-                    </span>
-                </router-link>
-            </li>
-        </ul>
+      <ul class="sidebar-nav"  style="margin-left:0;">
+        <li @click="toggled = !toggled" class="sidebar-brand cursor">
+            <a  style="margin-top:20px;float:right;">
+              <i aria-hidden="true"  class="fa fa-bars" style="font-size:20px !Important;"></i>
+            </a>
+        </li>
+        <li>
+          <router-link class="cursor" tag="a" :to="{name: 'member'}">
+            <i aria-hidden="true" class="fa fa-user"></i>
+            <span style="margin-left:1px;">Membres</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link class="cursor" tag="a" :to="{name: 'inscription'}">
+            <i aria-hidden="true" class="fa fa-edit"></i>
+            <span style="margin-left:1px;">Inscription</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link class="cursor" tag="a" :to="{name: 'class'}">
+            <i aria-hidden="true" class="fa fa-file-text"></i>
+            <span style="margin-left:1px;">Classes</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link class="cursor" tag="a" :to="{name: 'subject'}">
+            <i aria-hidden="true" class="fa fa-tachometer"></i>
+            <span style="margin-left:1px;">Matières</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link class="cursor" tag="a" :to="{name: 'notes'}">
+            <i aria-hidden="true" class="fa fa-comment-o"></i>
+            <span style="margin-left:1px;">Notes</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link class="cursor" tag="a" :to="{name: 'register'}">
+            <i aria-hidden="true" class="fa fa-book"></i>
+            <span style="margin-left:1px;">Registration</span>
+          </router-link>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
