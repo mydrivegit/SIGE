@@ -1,7 +1,7 @@
 <template>
 <div class="container register">
   <div class="row justify-content-md-center">
-    <div class="card-wrapper col-md-8 col-sm-6 col-lg-5 col-xl-5">
+    <div class="card-wrapper col-md-8 col-sm-7 col-lg-6 col-xl-5">
       <div class="card fat">
         <div class="card-body">
           <h4 class="card-title text-center">
@@ -10,7 +10,7 @@
           <form @submit.prevent="modify">
             <div class="form-group">
               <div class="form-inline">
-                <label  class="form-group font-weight-bold col-md-5 justify-content-start text-nowrap" >Identification :</label>
+                <label  class="form-group font-weight-bold col-md-6 justify-content-start text-nowrap" >Identification :</label>
                 <div class="form-group col-md-2">
                   <input v-if="show" v-model="users.username" class="form-control form-control-sm"
                   placeholder="Identification" disabled />
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
               <div class="form-inline">
-                <label  class="form-group font-weight-bold col-md-5 justify-content-start text-nowrap">Nom de famille :</label>
+                <label  class="form-group font-weight-bold col-md-6 justify-content-start text-nowrap">Nom de famille :</label>
                 <div class="form-group col-md-2">
                   <input v-if="show" v-model="users.lastname" class="form-control form-control-sm"
                   placeholder="Nom de famille" autofocus required/>
@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
               <div class="form-inline">
-                <label  class="form-group font-weight-bold col-md-5 justify-content-start text-nowrap">Prénom :</label>
+                <label  class="form-group font-weight-bold col-md-6 justify-content-start text-nowrap">Prénom :</label>
                 <div class="form-group col-md-2">
                   <input v-if="show" v-model="users.firstname" class="form-control form-control-sm"
                   placeholder="Prénom" autofocus required/>
@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
               <div class="form-inline">
-                <label  class="form-group font-weight-bold col-md-5 justify-content-start text-nowrap">E-Mail Adress :</label>
+                <label  class="form-group font-weight-bold col-md-6 justify-content-start text-nowrap">E-Mail Adress :</label>
                 <div class="form-group col-md-2">
                   <input v-if="show" v-model="users.email" type="email" class="form-control form-control-sm"
                   placeholder="E-Mail Adress" autofocus required/>
@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
               <div class="form-inline">
-                <label class="form-group font-weight-bold col-md-5 justify-content-start text-nowrap">Rôle :</label>
+                <label class="form-group font-weight-bold col-md-6 justify-content-start text-nowrap">Rôle :</label>
                 <div class="form-group col-md-2">
                   <b-form-select v-if="show" v-model="users.role" :options="role"
                   class="form-control form-control-sm b-col-md-12" aria-required=""/>
@@ -60,7 +60,7 @@
             </div>
             <div class="form-group">
               <div class="form-inline">
-                <label  class="form-group font-weight-bold col-md-5 justify-content-start text-nowrap">Numéro de portable :</label>
+                <label  class="form-group font-weight-bold col-md-6 justify-content-start text-nowrap">Numéro de portable :</label>
                 <div class="form-group col-md-1">
                   <input v-if="show" v-model="users.mobileNo" class="form-control form-control-sm"
                   placeholder="Numéro de portable" autofocus required/>
@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -115,10 +116,10 @@ export default {
     this.$store.dispatch('fetchUserId', this.$route.params.userId)
   },
   computed: {
-    users () {
-      return this.$store.getters.userId
-    },
-    role () { return this.$store.state.role }
+    ...mapGetters({
+      users: 'userId',
+      role: 'role'
+    })
   },
   methods: {
     modify () {

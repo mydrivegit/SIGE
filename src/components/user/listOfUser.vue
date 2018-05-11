@@ -27,9 +27,10 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   created () {
-    this.$store.dispatch('fetchUsersList')
+    return this.fetchUsersList
   },
   methods: {
     viewDetails (arg) {
@@ -53,9 +54,8 @@ export default {
     }
   },
   computed: {
-    users () {
-      return this.$store.getters.users
-    }
+    ...mapActions([('fetchUsersList')]),
+    ...mapGetters(['users'])
   }
 
 }

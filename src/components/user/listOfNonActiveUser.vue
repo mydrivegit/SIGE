@@ -25,13 +25,13 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   created () {
-    this.$store.dispatch('fetchUsersList')
+    return this.fetchUsersList
   },
   methods: {
     viewDetails (arg) {
-      console.log(arg)
       this.$router.push({ name: 'manageUser', params: { userId: arg } })
     },
     changeUserStatus (arg) {
@@ -51,9 +51,8 @@ export default {
     }
   },
   computed: {
-    users () {
-      return this.$store.getters.users
-    }
+    ...mapActions([('fetchUsersList')]),
+    ...mapGetters(['users'])
   }
 
 }

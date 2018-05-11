@@ -1,7 +1,7 @@
 <template>
 <div class="container register">
   <div class="row justify-content-md-center">
-    <div class="card-wrapper col-md-8 col-sm-6 col-lg-5 col-xl-5">
+    <div class="card-wrapper col-md-8 col-sm-8 col-lg-6 col-xl-5">
       <div class="card fat">
         <div class="card-body">
           <h4 class="card-title text-center font-weight-bold text-uppercase">

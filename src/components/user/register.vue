@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -59,8 +60,7 @@ export default {
         role: null,
         username: '',
         password: ''
-      },
-      role: this.$store.state.role
+      }
     }
   },
   methods: {
@@ -78,6 +78,9 @@ export default {
           this.$swal('Username already exist')
         })
     }
+  },
+  computed: {
+    ...mapGetters(['role'])
   }
 }
 </script>

@@ -55,6 +55,7 @@ export default new Vuex.Store({
   getters: {
     users: (state) => state.users,
     userDetails: (state) => state.userDetails,
-    userId: (state) => state.userId
+    userId: (state) => state.userId,
+    role: (state) => state.role
   }
 })
