@@ -131,7 +131,7 @@ export default {
           }
         })
         .catch(err => {
-          res.status(304).send(err.errmsg)
+          err.status(304).send(err.errmsg)
         })
     },
     managePassword (arg) {

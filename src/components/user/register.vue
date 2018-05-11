@@ -73,7 +73,7 @@ export default {
           }
         })
         .catch(err => {
-          return res.status(203).send(err.errmsg)
+          err.status(203).send(err.errmsg)
           this.$swal('Username already exist')
         })
     }
