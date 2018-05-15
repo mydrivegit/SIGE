@@ -17,7 +17,7 @@ let usersSignUp = (req, res, next) => {
         bcrypt.genSalt(10, (err, salt) => {
           if (err) {
             res.status(201).send({
-              message: err.errmsg
+              message: err.message
             })
           } else {
             bcrypt.hash(req.body.password, salt, (err, hash) => {
@@ -40,7 +40,7 @@ let usersSignUp = (req, res, next) => {
                   })
                 }).catch((err) => {
                   res.status(500).json({
-                    message: err.errmsg
+                    message: err.message
                   })
                 })
               }

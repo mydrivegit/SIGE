@@ -8,6 +8,13 @@ import manageUser from '@/components/user/manageUser'
 import managePassword from '@/components/user/managePassword'
 import sidebar from '@/components/sidebar/sidebar'
 import navbar from '@/components/sidebar/navbar'
+import createStudent from '@/components/member/student/createStudent'
+import listOfMembers from '@/components/member/listOfMembers'
+import manageStudent from '@/components/member/student/manageStudent'
+import createProf from '@/components/member/professor/createProf'
+import manageProf from '@/components/member/professor/manageProf'
+import createInCharge from '@/components/member/inCharge/createInCharge'
+import manageInCharge from '@/components/member/inCharge/manageInCharge'
 
 Vue.use(Router)
 
@@ -63,6 +70,59 @@ const router = new Router({
       components: {
         default: managePassword, navbar, sidebar
       }
+    },
+    {
+      path: '/createStudent',
+      name: 'createStudent',
+      components: {
+        default: createStudent, navbar, sidebar
+      }
+    },
+    {
+      path: '/listOfMembers',
+      name: 'listOfMembers',
+      components: {
+        default: listOfMembers, navbar, sidebar
+      }
+    },
+    {
+      path: '/manageStudent/:memberId',
+      name: 'manageStudent',
+      components: {
+        default: manageStudent, navbar, sidebar
+      }
+    },
+    {
+      path: '/createProf',
+      name: 'createProf',
+      components: {
+        default: createProf, navbar, sidebar
+      }
+    },
+    {
+      path: '/manageProf/:memberId',
+      name: 'manageProf',
+      components: {
+        default: manageProf, navbar, sidebar
+      }
+    },
+    {
+      path: '/createInCharge',
+      name: 'createInCharge',
+      components: {
+        default: createInCharge, navbar, sidebar
+      }
+    },
+    {
+      path: '/manageInCharge/:memberId',
+      name: 'manageInCharge',
+      components: {
+        default: manageInCharge, navbar, sidebar
+      }
+    },
+    {
+      path: '*',
+      redirect: { name: 'listOfMembers' }
     }
   ],
   mode: 'history'

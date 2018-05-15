@@ -13,4 +13,13 @@ export default {
 </script>
 
 <style>
+.ins-container {
+  position: relative;
+  top: 25px;
+  left: 35px;
+  justify-content: space-around;
+}
+.cursor {
+  cursor: pointer;
+}
 </style>

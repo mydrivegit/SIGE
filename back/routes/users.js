@@ -4,21 +4,10 @@ import usersController from '../controller/users'
 
 let users = express.Router()
 
-users.use(verifyToken).route('/')
-  .get(usersController.usersGetAll)
-  .patch(usersController.usersPatchUserdetails)
-  .delete(usersController.usersDelete)
-
-users.use(verifyToken).route('/profile')
-  .get(usersController.usersGetProfile)
-
-users.use(verifyToken).route('/update/:id')
-  .patch(usersController.usersPatchdetailsId)
-
-// users.use(verifyToken).route('/delete/:id')
-//   .delete(usersController.usersDeleteById)
-
-users.use(verifyToken).route('/:id')
-  .get(usersController.usersGetAllParamsid)
+users.use(verifyToken)
+  .get('/', usersController.usersGetAll)
+  .get('/profile', usersController.usersGetProfile)
+  .get('/:id', usersController.usersGetAllParamsid)
+  .patch('/update/:id', usersController.usersPatchdetailsId)
 
 export default users

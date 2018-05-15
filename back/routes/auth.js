@@ -3,9 +3,8 @@ import authController from '../controller/auth'
 import verifyToken from '../middleware/auth-middleware'
 
 let auth = express.Router()
-auth.route('/login')
-  .post(authController.usersLoginIn)
-auth.use(verifyToken).route('/signup')
-  .post(authController.usersSignUp)
+auth.post('/login', authController.usersLoginIn)
+auth.use(verifyToken)
+  .post('/signup', authController.usersSignUp)
 
 export default auth

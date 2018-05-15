@@ -52,7 +52,7 @@ export default {
       })
       .catch(err => {
         this.$router.push({ name: 'login' })
-        err.status(204).send(err.errmsg)
+        err.status(204).send(err.message)
       })
   },
   methods: {

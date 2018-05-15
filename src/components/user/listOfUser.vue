@@ -49,7 +49,7 @@ export default {
           }
         })
         .catch(err => {
-          err.status(304).send(err.errmsg)
+          err.status(304).send(err.message)
         })
     }
   },

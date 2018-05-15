@@ -54,15 +54,15 @@ export default {
       this.$store.dispatch('login', this.user)
         .then(res => {
           const jwtToken = res.data.token
-          const refreshToken = res.data.refreshToken
+          // const refreshToken = res.data.refreshToken
           localStorage.setItem('token', jwtToken)
-          localStorage.setItem('refreshToken', refreshToken)
-          if (jwtToken || refreshToken) {
+          // localStorage.setItem('refreshToken', refreshToken)
+          if (jwtToken) {
             this.$router.push({ name: 'register' })
           }
         })
         .catch(err => {
-          err.status(403).send(err.errmsg)
+          console.log(err)
           this.$swal('Please provide the correct Username / Password ')
         })
     },

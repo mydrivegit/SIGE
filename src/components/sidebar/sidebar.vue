@@ -9,7 +9,7 @@
             </a>
         </li>
         <li>
-          <router-link class="cursor" tag="a" :to="{name: 'member'}">
+          <router-link class="cursor" tag="a" :to="{name: 'listOfMembers'}">
             <i aria-hidden="true" class="fa fa-user"></i>
             <span style="margin-left:1px;">Membres</span>
           </router-link>
@@ -66,10 +66,6 @@ export default {
 body {
   overflow-x: hidden;
  }
-
-.cursor {
-  cursor: pointer;
-}
 
 /* Toggle Styles */
 

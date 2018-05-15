@@ -15,12 +15,20 @@ import store from './store/store'
 //  bootstrap-vue
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+//  DatePicker
+import Datepicker from 'vuejs-datepicker'
 
 Vue.prototype.moment = moment
 Vue.use(VueSweetalert2)
 Vue.use(BootstrapVue)
 global.jQuery = jQuery
 global.$ = jQuery
+
+$(() => {
+  $('#app').tooltip({
+    selector: '[data-toggle="tooltip"]'
+  })
+})
 
 Vue.config.productionTip = false
 moment.locale('fr')
@@ -30,6 +38,6 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: { App, Datepicker },
   template: '<App/>'
 })
