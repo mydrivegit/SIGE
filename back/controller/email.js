@@ -49,8 +49,8 @@ let emailGet = (req, res) => {
           title: req.body.title,
           content: req.body.content,
           emails: info.accepted,
-          sendTime: Date.now()
-          // senderId: req.userData.userId
+          sendTime: Date.now(),
+          senderId: req.userData.userId
         })
         email.save()
           .then(res
