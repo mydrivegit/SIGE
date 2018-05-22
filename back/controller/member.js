@@ -34,7 +34,6 @@ let memberPost = (req, res, next) => {
 
 let memberGetAll = (req, res, next) => {
   Member.find().exec().then((docs) => {
-    console.log(docs)
     res.status(200).send({
       message: 'Here is the list of Members and their details',
       success: true,
@@ -43,6 +42,26 @@ let memberGetAll = (req, res, next) => {
   }).catch((err) => {
     res.status(500).send(err.message)
   })
+}
+
+let memberGetFamilyId = (req, res, next) => {
+  const _userId = req.body.id
+  Member.find({ familyId: _userId })
+    .exec()
+    .then((docs) => {
+      if (docs.length >= 1) {
+        return res.status(200).send({
+          message: 'Here is the list of Members of their family',
+          docs
+        })
+      } else {
+        return res.status(204).send({
+          message: 'Student is not addedin this family'
+        })
+      }
+    }).catch((err) => {
+      res.status(500).send(err.message)
+    })
 }
 
 let memberGetAllParamsid = (req, res, next) => {
@@ -73,7 +92,6 @@ let memberPatchdetailsId = (req, res, next) => {
     req.body.dob = moment(moment(req.body.dob, 'DD/MM/YYYY').toDate()).add(1, 'hours')
   }
   for (const key of Object.keys(req.body)) {
-    console.log(req.body.dob)
     updateOps[key] = req.body[key]
   }
   Member.update({ _id: userId }, { $set: updateOps })
@@ -89,4 +107,23 @@ let memberPatchdetailsId = (req, res, next) => {
     })
 }
 
-export default { memberPost, memberGetAll, memberPatchdetailsId, memberGetAllParamsid }
+// let memberPatchBulk = (req, res, next) => {
+//   const ids = req.body.ids
+//   const bulk = Member.collection.initializeOrderedBulkOp()
+//   for (var i = 0; i < ids.length; i++) {
+//     var id = ids[i]
+//     bulk.findById({
+//       '_id': mongoose.Types.ObjectId(id)
+//     }).update({
+//       $set: {
+//         familyId: req.body.data
+//       }
+//     })
+//     bulk.execute(function (err, res) {
+//       if (err) return res.status(500).send(err.message)
+//       else res.status(201).send({ message: 'Member details are altered succesfully' })
+//     })
+//   }
+// }
+
+export default { memberPost, memberGetAll, memberGetFamilyId, memberPatchdetailsId, memberGetAllParamsid }

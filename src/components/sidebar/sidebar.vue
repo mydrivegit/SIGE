@@ -15,19 +15,19 @@
           </router-link>
         </li>
         <li>
-          <router-link class="cursor" tag="a" :to="{name: 'inscription'}">
+          <router-link class="cursor" tag="a" :to="{name: 'listOfFamilies'}">
             <i aria-hidden="true" class="fa fa-edit"></i>
             <span style="margin-left:1px;">Inscription</span>
           </router-link>
         </li>
         <li>
-          <router-link class="cursor" tag="a" :to="{name: 'class'}">
+          <router-link class="cursor" tag="a" :to="{name: 'listOfClass'}">
             <i aria-hidden="true" class="fa fa-file-text"></i>
             <span style="margin-left:1px;">Classes</span>
           </router-link>
         </li>
         <li>
-          <router-link class="cursor" tag="a" :to="{name: 'subject'}">
+          <router-link class="cursor" tag="a" :to="{name: 'listOfSubject'}">
             <i aria-hidden="true" class="fa fa-tachometer"></i>
             <span style="margin-left:1px;">Matières</span>
           </router-link>

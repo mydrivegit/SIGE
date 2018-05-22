@@ -9,7 +9,9 @@ import mongoose from 'mongoose'
 import auth from './routes/auth'
 import users from './routes/users'
 import member from './routes/member'
-// import product from './routes/product'
+import family from './routes/family'
+import classes from './routes/class'
+import email from './routes/email'
 
 //  app express
 let app = express()
@@ -33,6 +35,9 @@ app.use(bodyParser.json())
 app.use('/auth', auth)
 app.use('/users', users)
 app.use('/member', member)
+app.use('/family', family)
+app.use('/classes', classes)
+app.use('/email', email)
 
 //  Handling error if there any wrong Url is requested
 app.use((req, res, next) => {

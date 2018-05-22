@@ -44,7 +44,7 @@
           </div>
           <div class="col-md-7 mb-4">
           <label class="col-form-label font-weight-bold">Adresse</label>
-          <input v-model="inCharge.gender" type="text" class="form-control is-valid"  placeholder="Adresse">
+          <input v-model="inCharge.address" type="text" class="form-control is-valid"  placeholder="Adresse">
         </div>
       </div>
       <div class="form-row">

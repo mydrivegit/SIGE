@@ -10,13 +10,16 @@ export default new Vuex.Store({
     users: null,
     userDetails: [],
     userId: [],
-    role: [{ text: 'Sélectionnez le rôle......', value: null
-    }, { text: 'Administrateur', value: 'Admin'
-    }, { text: 'Utilisateur', value: 'User'
-    }],
     // Members State
     members: null,
-    memberId: []
+    memberId: [],
+    // Families
+    families: null,
+    familyId: [],
+    StudentInFamilies: null,
+    // Members State
+    classes: [],
+    classId: []
   },
   actions: {
     login: ({ commit }, authdata) => http.post('/auth/login', authdata),
@@ -27,7 +30,7 @@ export default new Vuex.Store({
           commit('storeUsers', res.data.content)
         })
         .catch(err => {
-          return err.status(404).send(err.message)
+          return console.log(err)
         })
     },
     fetchUserId ({ commit }, IdParams) {
@@ -36,7 +39,7 @@ export default new Vuex.Store({
           commit('storeUserId', res.data.result)
         })
         .catch(err => {
-          return err.status(404).send(err.message)
+          return console.log(err)
         })
     },
     fetchUser: ({ commit }) => http.get('/users/profile'),
@@ -50,7 +53,7 @@ export default new Vuex.Store({
           commit('storeMembers', res.data.docs)
         })
         .catch(err => {
-          return err.status(404).send(err.message)
+          return console.log(err)
         })
     },
     fetchMemberId ({ commit }, IdParams) {
@@ -62,7 +65,59 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-    modifyMemberIdData: ({ commit }, data) => http.patch('/member/update/' + data.id, data.data)
+    modifyMemberIdData: ({ commit }, data) => http.patch('/member/update/' + data.id, data.data),
+    //  for Family Actions
+    saveFamily: ({ commit }, authdata) => http.post('/family/', authdata),
+    fetchFamiliesList ({ commit }) {
+      http.get('/family/')
+        .then(res => {
+          commit('storeFamilies', res.data.docs)
+        })
+        .catch(err => {
+          return console.log(err)
+        })
+    },
+    fetchFamilyId ({ commit }, IdParams) {
+      http.get('/family/' + IdParams)
+        .then(res => {
+          commit('storeFamilyId', res.data.docs)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    modifyFamilyIdData: ({ commit }, data) => http.patch('/family/update/' + data.id, data.data),
+    listOfStudentInFamily ({ commit }, data) {
+      http.put('/member/family/', data)
+        .then(res => {
+          commit('storeStudentInFamily', res.data.docs)
+        })
+        .catch(err => {
+          return console.log(err)
+        })
+    },
+    //  Class Actions
+    saveClass: ({ commit }, authdata) => http.post('/classes/', authdata),
+    fetchClassesList ({ commit }) {
+      http.get('/classes/')
+        .then(res => {
+          commit('storeClasses', res.data.docs)
+        })
+        .catch(err => {
+          return console.log(err)
+        })
+    },
+    fetchClassId ({ commit }, IdParams) {
+      http.get('/classes/' + IdParams)
+        .then(res => {
+          commit('storeClassId', res.data.docs)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    modifyClassIdData: ({ commit }, data) => http.patch('/classes/update/' + data.id, data.data),
+    sendEmail: ({ commit }, authdata) => http.post('/email/', authdata)
   },
   mutations: {
     storeUsers (state, users) {
@@ -81,6 +136,25 @@ export default new Vuex.Store({
     storeMemberId (state, memberId) {
       memberId.dob = moment(memberId.dob).format('DD/MM/YYYY')
       state.memberId = memberId
+    },
+    //  Families Mutation
+    storeFamilies (state, families) {
+      state.families = families
+    },
+    storeFamilyId (state, familyId) {
+      familyId.registeredOn = moment(familyId.registeredOn).format('DD/MM/YYYY')
+      familyId.validatedOn = moment(familyId.validatedOn).format('DD/MM/YYYY')
+      state.familyId = familyId
+    },
+    storeStudentInFamily (state, StudentInFamilies) {
+      state.StudentInFamilies = StudentInFamilies
+    },
+    //  Class Mutation
+    storeClasses (state, classes) {
+      state.classes = classes
+    },
+    storeClassId (state, classId) {
+      state.classId = classId
     }
   },
   getters: {
@@ -91,6 +165,14 @@ export default new Vuex.Store({
     role: (state) => state.role,
     //  Member Getter
     members: (state) => state.members,
-    memberId: (state) => state.memberId
+    memberId: (state) => state.memberId,
+    // Families Getters
+    families: (state) => state.families,
+    familyId: (state) => state.familyId,
+    //  Get the students of concern family
+    StudentInFamilies: (state) => state.StudentInFamilies,
+    // Class Getters
+    classes: (state) => state.classes,
+    classId: (state) => state.classId
   }
 })

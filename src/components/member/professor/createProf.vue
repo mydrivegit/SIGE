@@ -1,7 +1,7 @@
 <template>
 <div class="container ins-container col-10" >
   <h4 class="text-nowrap text-center w-100 mb-5 form-control-sm heading">
-    <strong>Fiche Enseignant</strong>
+    <strong>Enseignant</strong>
   </h4>
     <form @submit.prevent="register">
       <div class="form-row">
@@ -44,7 +44,7 @@
           </div>
           <div class="col-md-7 mb-4">
           <label class="col-form-label font-weight-bold">Adresse</label>
-          <input v-model="prof.gender" type="text" class="form-control is-valid"  placeholder="Adresse">
+          <input v-model="prof.address" type="text" class="form-control is-valid"  placeholder="Adresse">
         </div>
       </div>
       <div class="form-row">

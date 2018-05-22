@@ -26,8 +26,6 @@
             </div>
             <div class="col-md-4" >
               <label class="col-form-label  font-weight-bold">Responsable</label>
-              <!-- <b-form-select v-model="student.inCharge" v-for="student in members" :key="student._id" class="form-control is-valid"
-              data-toggle="tooltip" data-placement="bottom" title="Responsable" aria-required="" /> -->
             <select v-model="student.inCharge"  class="form-control is-valid"
               data-toggle="tooltip" data-placement="bottom" title="Statut">
               <option disabled value='null'>Sélectionnez le responsable......</option>

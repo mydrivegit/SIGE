@@ -7,6 +7,7 @@ let member = express.Router()
 member.use(verifyToken)
   .post('/', memberController.memberPost)
   .get('/', memberController.memberGetAll)
+  .put('/family', memberController.memberGetFamilyId)
   .get('/:id', memberController.memberGetAllParamsid)
   .patch('/update/:id', memberController.memberPatchdetailsId)
 

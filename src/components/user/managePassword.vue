@@ -60,7 +60,7 @@ export default {
         })
         .catch(err => {
           this.$swal('Le mot de passe de l\'utilisateur n\'est pas modifié')
-          err.status(304).send(err.message)
+          console.log(err)
         })
     }
   }

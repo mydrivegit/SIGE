@@ -52,8 +52,11 @@
               <div class="form-inline">
                 <label class="form-group font-weight-bold col-md-6 justify-content-start text-nowrap">Rôle :</label>
                 <div class="form-group col-md-2">
-                  <b-form-select v-if="show" v-model="users.role" :options="role"
-                  class="form-control form-control-sm b-col-md-12" aria-required=""/>
+                  <select  v-model="user.role" v-if="show"  class="form-control form-control-sm" required>
+                    <option disabled value='null'>Sélectionnez le rôle......</option>
+                    <option value='Admin'>Administrateur</option>
+                    <option value='User'>Utilisateur</option>
+                  </select>
                   <div v-else type="text">{{users.role}}</div>
                 </div>
               </div>
@@ -117,8 +120,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      users: 'userId',
-      role: 'role'
+      users: 'userId'
     })
   },
   methods: {
@@ -131,7 +133,7 @@ export default {
           }
         })
         .catch(err => {
-          err.status(304).send(err.message)
+          console.log(err)
         })
     },
     managePassword (arg) {

@@ -26,7 +26,11 @@
             </div>
             <div class="form-group">
               <label for="role" class="sr-only">Rôle</label>
-              <b-form-select v-model="user.role" :options="role" class="form-control form-control-sm" aria-required="" />
+              <select  v-model="user.role"  class="form-control form-control-sm" required>
+                  <option disabled value='null'>Sélectionnez le rôle......</option>
+                  <option value='Admin'>Administrateur</option>
+                  <option value='User'>Utilisateur</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="mobileNo" class="sr-only">Numéro de portable</label>
@@ -48,7 +52,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -68,18 +71,17 @@ export default {
       this.$store.dispatch('register', this.user)
         .then(res => {
           if (res.status === 201) {
-            this.$router.push({name: 'users'})
+            this.$router.push({name: 'listOfUser'})
             this.$swal('Account ' + this.user.username + ' created Succesfully : please login')
           }
         })
         .catch(err => {
-          err.status(203).send(err.message)
+          console.log(err)
           this.$swal('Username already exist')
         })
     }
   },
   computed: {
-    ...mapGetters(['role'])
   }
 }
 </script>

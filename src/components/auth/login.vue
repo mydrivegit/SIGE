@@ -58,12 +58,12 @@ export default {
           localStorage.setItem('token', jwtToken)
           // localStorage.setItem('refreshToken', refreshToken)
           if (jwtToken) {
-            this.$router.push({ name: 'register' })
+            this.$router.push({ name: 'listOfMembers' })
           }
         })
         .catch(err => {
           console.log(err)
-          this.$swal('Please provide the correct Username / Password ')
+          this.$swal('Fournir le bon nom d\'utilisateur / mot de passe ')
         })
     },
     switchVisibility () {

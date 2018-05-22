@@ -1,45 +1,19 @@
 import mongoose from 'mongoose'
 
 let MemberSchema = new mongoose.Schema({
-  firstname: {
-    type: String
-  },
-  lastname: {
-    type: String
-  },
-  email: {
-    type: String
-  },
-  mobileNo: {
-    type: String
-  },
-  telephone: {
-    type: String
-  },
-  status: {
-    type: Boolean
-  },
-  class: {
-    type: String
-  },
-  inCharge: {
-    type: String
-  },
-  dob: {
-    type: Date
-  },
-  gender: {
-    type: String
-  },
-  address: {
-    type: String
-  },
-  town: {
-    type: String
-  },
-  cp: {
-    type: String
-  },
+  firstname: String,
+  lastname: String,
+  email: String,
+  mobileNo: String,
+  telephone: String,
+  status: Boolean,
+  class: String,
+  inCharge: String,
+  dob: Date,
+  gender: String,
+  address: String,
+  town: String,
+  cp: String,
   roleStudent: {
     type: Boolean,
     default: false
@@ -48,13 +22,14 @@ let MemberSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  role: {
-    type: String
-  },
-  page: {
-    type: String
-  },
+  role: String,
+  page: String,
+  familyId: String,
   roleInCharge: {
+    type: Boolean,
+    default: false
+  },
+  memberToFamily: {
     type: Boolean,
     default: false
   }

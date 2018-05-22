@@ -1,5 +1,5 @@
 <template>
-<b-container class="listofuser" fluid>
+<div class="listofuser">
   <div class="table-responsive col-12">
     <h5><u>Liste des utilisateurs actifs</u></h5>
     <table class="col table table-light table-hover table-list-search " id="table_format">
@@ -17,13 +17,13 @@
           <td>{{user.username}}</td>
           <td>{{user.firstname}}</td>
           <td>{{user.lastname}}</td>
-          <td><button @click="viewDetails(user._id)">Vue</button></td>
-          <td><button @click="changeUserStatus(user._id)">Utilisateur inactif</button></td>
+          <td><button class="btn btn-secondary" @click="viewDetails(user._id)">Vue</button></td>
+          <td><button class="btn btn-secondary" @click="changeUserStatus(user._id)">Utilisateur inactif</button></td>
         </tr>
         </tbody>
     </table>
     </div>
-</b-container>
+</div>
 </template>
 
 <script>
@@ -49,7 +49,7 @@ export default {
           }
         })
         .catch(err => {
-          err.status(304).send(err.message)
+          console.log(err)
         })
     }
   },
@@ -63,7 +63,9 @@ export default {
 
 <style>
 .listofuser {
-  padding: 20vh 20vh;
+  /* padding: 21vh 20vh; */
+  padding-left: 23vh;
+  padding-top: 15vh;
 }
 
 </style>

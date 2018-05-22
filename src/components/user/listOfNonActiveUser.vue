@@ -1,5 +1,5 @@
 <template>
-<b-container class="listofuser" fluid>
+<div class="listofNonActiveuser" fluid>
   <div class="table-responsive col-12">
     <h5><u>Liste des utilisateurs inactifs</u></h5>
     <table class="col table table-striped table-hover table-list-search " id="table_format">
@@ -16,12 +16,12 @@
           <td>{{user.username}}</td>
           <td>{{user.firstname}}</td>
           <td>{{user.lastname}}</td>
-          <td><button @click="changeUserStatus(user._id)">Activer l'utilisateur</button></td>
+          <td><button class="btn btn-secondary" @click="changeUserStatus(user._id)">Activer l'utilisateur</button></td>
         </tr>
         </tbody>
     </table>
     </div>
-</b-container>
+</div>
 </template>
 
 <script>
@@ -46,7 +46,7 @@ export default {
           }
         })
         .catch(err => {
-          err.status(304).send(err.message)
+          console.log(err)
         })
     }
   },
@@ -59,9 +59,9 @@ export default {
 </script>
 
 <style>
-.listofuser {
-  padding-left: 14vh;
-  padding-top: 20vh;
+.listofNonActiveuser {
+  padding-left: 23vh;
+  padding-top: 15vh;
 }
 
 </style>

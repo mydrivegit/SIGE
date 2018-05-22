@@ -12,15 +12,11 @@ import jQuery from 'jquery'
 import 'font-awesome/css/font-awesome.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 import store from './store/store'
-//  bootstrap-vue
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 //  DatePicker
 import Datepicker from 'vuejs-datepicker'
 
 Vue.prototype.moment = moment
 Vue.use(VueSweetalert2)
-Vue.use(BootstrapVue)
 global.jQuery = jQuery
 global.$ = jQuery
 

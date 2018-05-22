@@ -2,7 +2,7 @@
 <div class="container col-10 pl-5">
     <div class="homecontainer w-100">
       <h4 class="text-nowrap mb-5 text-center w-100 form-control-sm headingWithSearchBar">
-        <strong>Membres</strong>
+        <strong>Liste des Membres inactifs</strong>
       </h4>
       <div class="row">
         <form class="form-group mt-5 col-12" role="search">
@@ -154,7 +154,7 @@ export default {
     filterbyrole () {
       if (this.members) {
         return this.members.filter(member => {
-          return member.status
+          return !member.status
         })
       }
     },

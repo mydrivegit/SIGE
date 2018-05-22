@@ -26,6 +26,9 @@
           <router-link v-if="users.role" class="dropdown-item cursor" data-toggle="collapse"
         data-target=".navbar-collapse.show" tag="li" :to="{name: 'listOfNonActiveUser'}">
         Liste des utilisateurs inactifs</router-link>
+          <router-link v-if="users.role" class="dropdown-item cursor" data-toggle="collapse"
+        data-target=".navbar-collapse.show" tag="li" :to="{name: 'listOfNonActiveMembers'}">
+        Liste des Membres inactifs</router-link>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item cursor" @click="logout">Log Out</a>
         </div>
@@ -50,9 +53,9 @@ export default {
       .then(res => {
         this.users = res.data.content['0']
       })
-      .catch(err => {
+      .catch((err) => {
         this.$router.push({ name: 'login' })
-        err.status(204).send(err.message)
+        console.log(err)
       })
   },
   methods: {
