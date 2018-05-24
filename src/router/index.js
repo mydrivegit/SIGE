@@ -23,6 +23,7 @@ import addStudentInFamily from '@/components/family/addStudentInFamily'
 import createClass from '@/components/class/createClass'
 import manageClass from '@/components/class/manageClass'
 import listOfClass from '@/components/class/listOfClass'
+import addStudentInClass from '@/components/class/addStudentInClass'
 
 Vue.use(Router)
 
@@ -182,6 +183,13 @@ const router = new Router({
       name: 'manageClass',
       components: {
         default: manageClass, navbar, sidebar
+      }
+    },
+    {
+      path: '/addStudentInClass/:classId',
+      name: 'addStudentInClass',
+      components: {
+        default: addStudentInClass, navbar, sidebar
       }
     },
     {

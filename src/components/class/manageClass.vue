@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="container ins-container col-10" >
     <h4 class="text-nowrap mb-5 text-center w-100 form-control-sm heading">
       <strong>Classe</strong>
@@ -46,6 +47,32 @@
       </div>
     </form>
   </div>
+  <div class="container ins-container table-responsive col-10">
+      <div class="text-nowarp">
+        <table class="table table-striped table-hover">
+          <thead class="thead-light ">
+            <tr>
+              <th scope="col">Nom Prénom | Elève <i class="fa fa-sort-asc"></i><br> </th>
+              <th scope="col">Date de Naissance <i class="fa fa-sort"></i></th>
+              <th scope="col">Genre <i class="fa fa-sort-desc"></i></th>
+              <th scope="col">Supprimer</th>
+            </tr>
+          </thead>
+          <tbody v-for="member in memberIdclassesId" :key="member._id">
+            <tr class="content">
+              <th>{{member.lastname}} {{member.firstname}}</th>
+              <td>{{moment(member.dob).format('L')}}</td>
+              <td>{{member.gender}}</td>
+              <td><i @click="removedId(member._id)" class="fa fa-trash"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div align="right" class="mb-4">
+        <button @click="viewDetails()" class="btn btn-secondary"><i class="fa fa-plus"></i>  Ajoutez un élève</button>
+      </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -65,14 +92,32 @@ export default {
           console.log(err)
           this.$swal('Erreur lors de la sauvegarde des détails de ' + this.classId.lastname)
         })
+    },
+    viewDetails () {
+      this.$router.push({ name: 'addStudentInClass', params: { classId: this.$route.params.classId } })
+    },
+    removedId (arg) {
+      this.$store.dispatch('modifyMemberIdInClass', {id: arg, data: {studentId: ''}})
+        .then(res => {
+          if (res.status === 201) {
+            this.$router.push({name: 'manageClass'})
+            window.location.reload()
+            this.$swal('le membre est retiré de la classe')
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          this.$swal('Erreur lors de la suppression du membre de la liste')
+        })
     }
   },
   computed: {
     ...mapActions([('fetchMembersList')]),
-    ...mapGetters(['classes', 'classId'])
+    ...mapGetters(['classId', 'memberIdclassesId'])
   },
   created () {
     this.$store.dispatch('fetchClassId', this.$route.params.classId)
+    this.$store.dispatch('fetchmemberIdInClassId', this.$route.params.classId)
     return this.fetchMembersList
   }
 }

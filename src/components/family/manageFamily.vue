@@ -160,7 +160,7 @@ export default {
       this.$router.push({ name: 'addStudentInFamily', params: { memberId: this.$route.params.memberId } })
     },
     removedId (arg) {
-      this.$store.dispatch('modifyMemberIdData', {id: arg, data: {familyId: ''}})
+      this.$store.dispatch('modifyMemberIdData', {id: arg, data: {familyId: '', memberToFamily: false}})
         .then(res => {
           if (res.status === 201) {
             this.$router.push({name: 'manageFamily'})

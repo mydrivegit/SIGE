@@ -1,5 +1,5 @@
 import Classes from '../models/class'
-import moment from 'moment'
+// import Member from '../models/member'
 
 let classPost = (req, res, next) => {
   let classes = new Classes({
@@ -54,12 +54,29 @@ let classGetAllParamsid = (req, res, next) => {
   })
 }
 
+// let classGetMember = (req, res, next) => {
+//   const _userId = req.params.id
+//   Classes.find({ _userId })
+//     .exec().then(Member.find({ _id: _userId })
+//       .exec()
+//       .then((docs) => {
+//         if (docs.length >= 1) {
+//           return res.status(200).send(docs)
+//         } else {
+//           return res.status(204).send({
+//             message: 'Inbox is empty'
+//           })
+//         }
+//       }).catch((err) => {
+//         res.status(500).send(err.message)
+//       })).catch((err) => {
+//       res.status(500).send(err.message)
+//     })
+// }
+
 let classPatchdetailsId = (req, res, next) => {
   const userId = req.params.id
   const updateOps = {}
-  if (req.body.dob) {
-    req.body.dob = moment(moment(req.body.dob, 'DD/MM/YYYY').toDate()).add(1, 'hours')
-  }
   for (const key of Object.keys(req.body)) {
     updateOps[key] = req.body[key]
   }

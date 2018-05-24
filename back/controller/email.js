@@ -34,7 +34,6 @@ let emailGet = (req, res) => {
     let mailOptions = {
       from: '"Alihasana" <no-reply@shaik.fr>',
       to: email,
-      // bcc: memberEmails,
       subject: req.body.title,
       html: compiledTemplate.render({ message: req.body.content })
     }
@@ -70,21 +69,3 @@ let emailGet = (req, res) => {
 }
 
 export default { emailGet }
-
-// let email = new Email({
-//   title: req.body.title,
-//   content: req.body.content,
-//   emails: req.body.emails,
-//   sendTime: Date.now()
-//   // senderId: req.userData.userId
-// })
-// email.save()
-//   .then(res.status(201)
-//     .send({
-//       success: true,
-//       message: 'Email is saved in send item /Email Send'
-//     })
-//   )
-//   .catch((err) => {
-//     res.send(err.message)
-//   })

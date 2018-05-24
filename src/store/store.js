@@ -19,6 +19,7 @@ export default new Vuex.Store({
     StudentInFamilies: null,
     // Members State
     classes: [],
+    memberIdclassesId: [],
     classId: []
   },
   actions: {
@@ -116,6 +117,15 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    fetchmemberIdInClassId ({ commit }, IdParams) {
+      http.get('/classes/member/' + IdParams)
+        .then(res => {
+          commit('storeMemberIdClassId', res.data.docs)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     modifyClassIdData: ({ commit }, data) => http.patch('/classes/update/' + data.id, data.data),
     sendEmail: ({ commit }, authdata) => http.post('/email/', authdata)
   },
@@ -153,6 +163,9 @@ export default new Vuex.Store({
     storeClasses (state, classes) {
       state.classes = classes
     },
+    storeMemberIdClassId (state, memberIdclassesId) {
+      state.memberIdclassesId = memberIdclassesId
+    },
     storeClassId (state, classId) {
       state.classId = classId
     }
@@ -173,6 +186,7 @@ export default new Vuex.Store({
     StudentInFamilies: (state) => state.StudentInFamilies,
     // Class Getters
     classes: (state) => state.classes,
+    memberIdclassesId: (state) => state.memberIdclassesId,
     classId: (state) => state.classId
   }
 })

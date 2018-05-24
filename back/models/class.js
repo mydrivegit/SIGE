@@ -1,6 +1,13 @@
 import mongoose from 'mongoose'
 
-let ClassesSchema = new mongoose.Schema({
+let Schema = mongoose.Schema
+let ObjectId = Schema.Types.ObjectId
+
+let classStudentSchema = new Schema({
+  studentId: { type: ObjectId, ref: 'Member' }
+}, { _id: false })
+
+let ClassesSchema = new Schema({
   code: {
     type: String
   },
@@ -8,7 +15,8 @@ let ClassesSchema = new mongoose.Schema({
   semester: Number,
   label: String,
   level: String,
-  status: Boolean
+  status: Boolean,
+  studentIds: [classStudentSchema]
 },
 {
   timestamps: true
