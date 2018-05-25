@@ -10,5 +10,6 @@ classes.use(verifyToken)
   .get('/:id', classController.classGetAllParamsid)
   // .get('/member/:id', classController.classGetMember)
   .patch('/update/:id', classController.classPatchdetailsId)
+  .patch('/updatestudent/:id', classController.classPatchStudentId)
 
 export default classes

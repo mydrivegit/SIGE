@@ -58,7 +58,7 @@
               <th scope="col">Supprimer</th>
             </tr>
           </thead>
-          <tbody v-for="member in memberIdclassesId" :key="member._id">
+          <tbody v-for="member in fetchClassId.studentIds" :key="member._id">
             <tr class="content">
               <th>{{member.lastname}} {{member.firstname}}</th>
               <td>{{moment(member.dob).format('L')}}</td>
@@ -117,7 +117,6 @@ export default {
   },
   created () {
     this.$store.dispatch('fetchClassId', this.$route.params.classId)
-    this.$store.dispatch('fetchmemberIdInClassId', this.$route.params.classId)
     return this.fetchMembersList
   }
 }

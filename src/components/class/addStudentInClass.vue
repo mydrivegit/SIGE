@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     selectedId (arg) {
-      this.$store.dispatch('modifyClassIdData', {id: arg, data: {studentIds: {studentId: this.$route.params.memberId}}})
+      this.$store.dispatch('updateStudetnInClass', {id: this.$route.params.classId, data: {studentIds: arg}})
         .then(res => {
           if (res.status === 201) {
             this.$router.push({name: 'manageClass'})

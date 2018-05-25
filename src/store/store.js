@@ -117,16 +117,8 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-    fetchmemberIdInClassId ({ commit }, IdParams) {
-      http.get('/classes/member/' + IdParams)
-        .then(res => {
-          commit('storeMemberIdClassId', res.data.docs)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
     modifyClassIdData: ({ commit }, data) => http.patch('/classes/update/' + data.id, data.data),
+    updateStudetnInClass: ({ commit }, data) => http.patch('/classes/updatestudent/' + data.id, data.data),
     sendEmail: ({ commit }, authdata) => http.post('/email/', authdata)
   },
   mutations: {
