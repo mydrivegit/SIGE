@@ -2,7 +2,7 @@
 <div class="container col-10 pl-5">
     <div class="homecontainer w-100">
       <h4 class="text-nowrap mb-5 text-center w-100 form-control-sm headingWithSearchBar">
-        <strong>Classes</strong>
+        <strong>Matières</strong>
       </h4>
       <div class="row">
         <form class="form-group mt-5 col-12" role="search">
@@ -28,26 +28,20 @@
           <thead class="thead-light">
             <tr class="align-text-bottom">
               <th class="text-nowrap" scope="col">Code</th>
-              <th class="text-nowrap" scope="col">Nom Classe | Niveau <i class="fa fa-sort-asc"></i></th>
-              <th class="text-nowrap" scope="col">Année Scolaire <i class="fa fa-sort"></i></th>
+              <th class="text-nowrap" scope="col">Matière <i class="fa fa-sort-asc"></i></th>
+              <th class="text-nowrap" scope="col">Date d'ajout <i class="fa fa-sort"></i></th>
               <th class="text-nowrap" scope="col">Statut</th>
-              <th scope="col">Trimester</th>
               <th class="text-nowrap" scope="col"><i class="fa fa-pencil" aria-hidden="true"></i> / <i class="fa fa-eye"></i> </th>
             </tr>
           </thead>
-          <tbody v-for="classId in filterbyname" :key="classId._id"  id="myTable">
+          <tbody v-for="subjectId in filterbyname" :key="subjectId._id"  id="myTable">
             <tr class="content">
-              <td>{{classId.code}}</td>
-              <td>{{classId.label}}</td>
-              <td>{{classId.year}}</td>
-              <td><div v-if="classId.status">Overte</div>
+              <td>{{subjectId.code}}</td>
+              <td>{{subjectId.subject}}</td>
+              <td>{{subjectId.addedDate}}</td>
+              <td><div v-if="subjectId.status">Active</div>
               <div v-else>Terminée</div></td>
-              <td>
-                <div v-if="classId.semester == 1">1ere</div>
-                <div v-if="classId.semester == 2">2emé</div>
-                <div v-if="classId.semester == 3">3emé</div>
-              </td>
-              <td class="text-nowrap" @click="viewDetails(classId._id)">
+              <td class="text-nowrap" @click="viewDetails(subjectId._id)">
                 <i class="fa fa-pencil cursor" aria-hidden="true"></i> / <i class="fa fa-eye cursor"></i>
               </td>
             </tr>
@@ -68,22 +62,22 @@ export default {
     }
   },
   computed: {
-    ...mapActions([('fetchClassesList')]),
-    ...mapGetters(['classes']),
+    ...mapActions([('fetchSubjectList')]),
+    ...mapGetters(['subjects']),
     filterbyname () {
-      if (this.classes) {
-        return this.classes.filter(classId => {
-          return classId.label.toLowerCase().includes(this.search.toLowerCase()) || classId.code.toLowerCase().includes(this.search.toLowerCase())
+      if (this.subjects) {
+        return this.subjects.filter(subjectId => {
+          return subjectId.subject.toLowerCase().includes(this.search.toLowerCase()) || subjectId.code.toLowerCase().includes(this.search.toLowerCase())
         })
       }
     }
   },
   created () {
-    return this.fetchClassesList
+    return this.fetchSubjectList
   },
   methods: {
     viewDetails (arg) {
-      this.$router.push({ name: 'manageClass', params: { classId: arg } })
+      this.$router.push({ name: 'manageClass', params: { subjectId: arg } })
     }
   }
 }

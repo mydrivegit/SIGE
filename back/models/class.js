@@ -9,7 +9,7 @@ let ClassesSchema = new mongoose.Schema({
   label: String,
   level: String,
   status: Boolean,
-  studentIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Member' }]
+  studentIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Member', index: { unique: true }, sparse: true }]
 },
 {
   timestamps: true

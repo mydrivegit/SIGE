@@ -63,7 +63,7 @@
               <th>{{member.lastname}} {{member.firstname}}</th>
               <td>{{moment(member.dob).format('L')}}</td>
               <td>{{member.gender}}</td>
-              <td><i @click="removedId(member._id)" class="fa fa-trash"></i></td>
+              <td><i @click="removedId(member._id)" class="fa fa-trash cursor"></i></td>
             </tr>
           </tbody>
         </table>
@@ -97,7 +97,7 @@ export default {
       this.$router.push({ name: 'addStudentInClass', params: { classId: this.$route.params.classId } })
     },
     removedId (arg) {
-      this.$store.dispatch('modifyMemberIdInClass', {id: arg, data: {studentId: ''}})
+      this.$store.dispatch('modifyMemberIdFromClass', {id: this.$route.params.classId, data: {studentIds: arg}})
         .then(res => {
           if (res.status === 201) {
             this.$router.push({name: 'manageClass'})

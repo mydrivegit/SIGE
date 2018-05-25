@@ -65,7 +65,7 @@
                 </select>
                 </th>
               <!-- <th scope="col">Statut</th> -->
-              <th scope="col">Détail /Modifier</th>
+              <th scope="col" class="text-nowrap"><i class="fa fa-pencil" aria-hidden="true"></i> / <i class="fa fa-eye"></i></th>
             </tr>
           </thead>
           <tbody v-for="member in filterbyname" :key="member._id"  id="myTable">
@@ -81,7 +81,9 @@
               <td>{{member.class}}</td>
               <!-- <td><div v-if="member.status">Active</div>
               <div v-else>Inactive</div></td> -->
-              <td class="cursor"><button class="btn btn-secondary" @click="viewDetails(member.page, member._id)">Voir en détail</button></td>
+              <td class="text-nowrap"  @click="viewDetails(member.page, member._id)">
+                <i class="fa fa-pencil cursor" aria-hidden="true"> /</i> <i class="fa fa-eye cursor"></i>
+              </td>
             </tr>
           </tbody>
         </table>

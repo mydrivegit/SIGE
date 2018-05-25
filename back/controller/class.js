@@ -40,9 +40,8 @@ let classGetAll = (req, res, next) => {
 let classGetAllParamsid = (req, res, next) => {
   const id = req.params.id
   Classes.findById(id)
-    .populate('Member')
+    .populate('studentIds')
     .then((docs) => {
-      console.log(docs)
       if (docs) {
         res.status(201).send({
           message: 'Here is your details for the requested ID',
@@ -54,6 +53,7 @@ let classGetAllParamsid = (req, res, next) => {
         })
       }
     }).catch(err => {
+      console.log(err)
       res.status(500).send({
         message: 'Class not found',
         error: err.name
@@ -86,7 +86,7 @@ let classPatchStudentId = (req, res, next) => {
   for (const key of Object.keys(req.body)) {
     updateOps[key] = req.body[key]
   }
-  Classes.findOneAndUpdate({ _id: classId }, { $push: updateOps })
+  Classes.findOneAndUpdate({ _id: classId }, { $addToSet: updateOps })
     .exec()
     .then((docs) => {
       res.status(201).send({
@@ -99,4 +99,23 @@ let classPatchStudentId = (req, res, next) => {
     })
 }
 
-export default { classPost, classGetAll, classPatchdetailsId, classGetAllParamsid, classPatchStudentId }
+let classPullStudentId = (req, res, next) => {
+  const classId = req.params.id
+  const updateOps = {}
+  for (const key of Object.keys(req.body)) {
+    updateOps[key] = req.body[key]
+  }
+  Classes.findOneAndUpdate({ _id: classId }, { $pull: updateOps })
+    .exec()
+    .then((docs) => {
+      res.status(201).send({
+        message: 'Student Id is removed from class',
+        docs
+      })
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+}
+
+export default { classPost, classGetAll, classPullStudentId, classPatchdetailsId, classGetAllParamsid, classPatchStudentId }

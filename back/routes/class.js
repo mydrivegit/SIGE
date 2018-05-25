@@ -8,8 +8,8 @@ classes.use(verifyToken)
   .post('/', classController.classPost)
   .get('/', classController.classGetAll)
   .get('/:id', classController.classGetAllParamsid)
-  // .get('/member/:id', classController.classGetMember)
   .patch('/update/:id', classController.classPatchdetailsId)
   .patch('/updatestudent/:id', classController.classPatchStudentId)
+  .patch('/pullstudent/:id', classController.classPullStudentId)
 
 export default classes
