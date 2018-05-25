@@ -58,7 +58,7 @@
               <th scope="col">Supprimer</th>
             </tr>
           </thead>
-          <tbody v-for="member in fetchClassId.studentIds" :key="member._id">
+          <tbody v-for="member in classId.studentIds" :key="member._id">
             <tr class="content">
               <th>{{member.lastname}} {{member.firstname}}</th>
               <td>{{moment(member.dob).format('L')}}</td>
@@ -113,7 +113,7 @@ export default {
   },
   computed: {
     ...mapActions([('fetchMembersList')]),
-    ...mapGetters(['classId', 'memberIdclassesId'])
+    ...mapGetters(['classId'])
   },
   created () {
     this.$store.dispatch('fetchClassId', this.$route.params.classId)
