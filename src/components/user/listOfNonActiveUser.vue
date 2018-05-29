@@ -2,7 +2,7 @@
 <div class="listofNonActiveuser" fluid>
   <div class="table-responsive col-12">
     <h5><u>Liste des utilisateurs inactifs</u></h5>
-    <table class="col table table-striped table-hover table-list-search " id="table_format">
+    <table class="col table table-hover table-list-search " id="table_format">
       <thead class="thead-light">
         <tr class="align-text-bottom">
           <th class="text-nowrap" scope="col">Username</th>

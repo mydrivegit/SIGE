@@ -9,10 +9,10 @@
             <div class="col-md-4">
               <label class="col-form-label font-weight-bold">Statut</label>
               <select v-model="student.status"  class="form-control is-valid" placeholder="Statut" required>
-              <option disabled value='null'>Sélectionnez le status......</option>
-              <option value='true'>Actif</option>
-              <option value='false'>Inactif</option>
-            </select>
+                <option disabled value='null'>Sélectionnez le status......</option>
+                <option value='true'>Actif</option>
+                <option value='false'>Inactif</option>
+              </select>
             </div>
             <div class="col-md-4">
               <label class="col-form-label font-weight-bold">Classe</label>

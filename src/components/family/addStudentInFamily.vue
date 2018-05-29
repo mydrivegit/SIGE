@@ -10,14 +10,14 @@
             <input type="text" v-model="search" class="form-control" placeholder="Je cherche quelqu'un.." >
             <div class="input-group-append">
               <div class="btn btn-default btn-outline-secondary" :disabled="!search" @click="search = ''">
-                Clear
+                Effacer
               </div>
             </div>
           </div>
         </form>
       </div>
       <div class="table-responsive">
-        <table class="col table table-striped table-hover table-list-search col-11" id="table_format">
+        <table class="col table table-hover table-list-search col-11" id="table_format">
           <thead class="thead-light">
             <tr class="align-text-bottom">
               <th class="text-nowrap" scope="col">

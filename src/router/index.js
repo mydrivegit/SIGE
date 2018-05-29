@@ -24,6 +24,10 @@ import createClass from '@/components/class/createClass'
 import manageClass from '@/components/class/manageClass'
 import listOfClass from '@/components/class/listOfClass'
 import addStudentInClass from '@/components/class/addStudentInClass'
+import addSubjectInClass from '@/components/class/addSubjectInClass'
+import createSubject from '@/components/subject/createSubject'
+import manageSubject from '@/components/subject/manageSubject'
+import listOfSubject from '@/components/subject/listOfSubject'
 
 Vue.use(Router)
 
@@ -190,6 +194,34 @@ const router = new Router({
       name: 'addStudentInClass',
       components: {
         default: addStudentInClass, navbar, sidebar
+      }
+    },
+    {
+      path: '/addSubjectInClass/:classId',
+      name: 'addSubjectInClass',
+      components: {
+        default: addSubjectInClass, navbar, sidebar
+      }
+    },
+    {
+      path: '/createSubject',
+      name: 'createSubject',
+      components: {
+        default: createSubject, navbar, sidebar
+      }
+    },
+    {
+      path: '/listOfSubject',
+      name: 'listOfSubject',
+      components: {
+        default: listOfSubject, navbar, sidebar
+      }
+    },
+    {
+      path: '/manageSubject/:subjectId',
+      name: 'manageSubject',
+      components: {
+        default: manageSubject, navbar, sidebar
       }
     },
     {

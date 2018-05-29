@@ -15,7 +15,7 @@
           <input v-model="classId.year" type="text" class="form-control is-valid" placeholder="Année">
         </div>
         <div class="col-md-4 mb-4">
-          <label class="col-form-label font-weight-bold">Semestre</label>
+          <label class="col-form-label font-weight-bold">Trimestre</label>
           <select v-model="classId.semester" class="form-control is-valid"  placeholder="Statut" required>
             <option disabled value='null'>Sélectionnez le Semestre......</option>
             <option value=1>1er</option>
@@ -49,7 +49,7 @@
   </div>
   <div class="container ins-container table-responsive col-10">
       <div class="text-nowarp">
-        <table class="table table-striped table-hover">
+        <table class="table table-hover">
           <thead class="thead-light ">
             <tr>
               <th scope="col">Nom Prénom | Elève <i class="fa fa-sort-asc"></i><br> </th>
@@ -63,15 +63,49 @@
               <th>{{member.lastname}} {{member.firstname}}</th>
               <td>{{moment(member.dob).format('L')}}</td>
               <td>{{member.gender}}</td>
-              <td><i @click="removedId(member._id)" class="fa fa-trash cursor"></i></td>
+              <td><i @click="removeStudentId(member._id)" class="fa fa-trash cursor"></i></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div align="right" class="mb-4">
-        <button @click="viewDetails()" class="btn btn-secondary"><i class="fa fa-plus"></i>  Ajoutez un élève</button>
+        <div @click="addStudent()" role="button" class="btn btn-secondary"><i class="fa fa-plus"></i>  Ajoutez un élève</div>
       </div>
   </div>
+  <div class="container ins-container table-responsive col-10">
+      <div class="text-nowarp">
+        <table class="table table-hover">
+          <thead class="thead-light ">
+            <tr>
+              <th scope="col">Matière
+                <i class="fa fa-sort-asc"></i>
+                <br> </th>
+              <th scope="col">Date d'ajout
+                <i class="fa fa-sort"></i>
+              </th>
+              <th scope="col">Statut
+                <i class="fa fa-sort-desc"></i>
+              </th>
+              <th scope="col">Suppprimer
+              </th>
+            </tr>
+          </thead>
+          <tbody v-for="subject in classId.subjectIds" :key="subject._id">
+            <tr class="content">
+              <th>{{subject.name}}</th>
+              <td>{{moment(subject.addedDate).format('L')}}</td>
+              <td><div v-if="subject.status">Active</div>
+              <div v-else>Inactive</div></td>
+              <td><i @click="removeSubjectId(subject._id)" class="fa fa-trash cursor"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div align="right">
+        <div @click="addSubject()" role="button" class="btn btn-secondary">
+          <i class="fa fa-plus"></i> Ajoutez une matière</div>
+      </div>
+    </div>
 </div>
 </template>
 
@@ -93,16 +127,39 @@ export default {
           this.$swal('Erreur lors de la sauvegarde des détails de ' + this.classId.lastname)
         })
     },
-    viewDetails () {
+    addStudent () {
       this.$router.push({ name: 'addStudentInClass', params: { classId: this.$route.params.classId } })
     },
-    removedId (arg) {
-      this.$store.dispatch('modifyMemberIdFromClass', {id: this.$route.params.classId, data: {studentIds: arg}})
+    addSubject () {
+      this.$router.push({ name: 'addSubjectInClass', params: { classId: this.$route.params.classId } })
+    },
+    removeStudentId (arg) {
+      this.$store.dispatch('removeDetailFromClass', {id: this.$route.params.classId, data: {studentIds: arg}})
         .then(res => {
           if (res.status === 201) {
             this.$router.push({name: 'manageClass'})
             window.location.reload()
             this.$swal('le membre est retiré de la classe')
+            setTimeout(() => {
+              location.reload(true)
+            }, 1500)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          this.$swal('Erreur lors de la suppression du membre de la liste')
+        })
+    },
+    removeSubjectId (arg) {
+      this.$store.dispatch('removeDetailFromClass', {id: this.$route.params.classId, data: {subjectIds: arg}})
+        .then(res => {
+          if (res.status === 201) {
+            this.$router.push({name: 'manageClass'})
+            window.location.reload()
+            this.$swal('Matiére est retiré de la classe')
+            setTimeout(() => {
+              location.reload(true)
+            }, 1500)
           }
         })
         .catch(err => {

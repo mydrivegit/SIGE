@@ -64,7 +64,7 @@
     </div>
     <!-- <div class="container ins-container table-responsive col-10">
       <div class="text-nowarp">
-        <table class="table table-striped table-hover">
+        <table class="table table-hover">
           <thead class="thead-light ">
             <tr>
               <th scope="col">Nom Prénom | Elève <i class="fa fa-sort-asc"></i><br> </th>
@@ -97,7 +97,7 @@
     </div>
     <div class="container ins-container table-responsive col-10">
       <div class="text-nowarp">
-        <table class="table table-striped table-hover">
+        <table class="table table-hover">
           <thead class="thead-light ">
             <tr>
               <th scope="col">Paiement

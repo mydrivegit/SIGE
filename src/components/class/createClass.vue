@@ -14,7 +14,7 @@
           <input v-model="classId.year" type="text" class="form-control is-valid" placeholder="Année">
         </div>
         <div class="col-md-4 mb-4">
-          <label class="col-form-label font-weight-bold">Semestre</label>
+          <label class="col-form-label font-weight-bold">Trimestre</label>
           <select v-model="classId.semester" class="form-control is-valid"  placeholder="Statut" required>
             <option disabled value='null'>Sélectionnez le Semestre......</option>
             <option value=1>1er</option>

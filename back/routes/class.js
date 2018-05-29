@@ -7,9 +7,10 @@ let classes = express.Router()
 classes.use(verifyToken)
   .post('/', classController.classPost)
   .get('/', classController.classGetAll)
+  .get('/ClassDetailsOfMember/:id', classController.ClassGetDetailsOfMember)
   .get('/:id', classController.classGetAllParamsid)
   .patch('/update/:id', classController.classPatchdetailsId)
-  .patch('/updatestudent/:id', classController.classPatchStudentId)
-  .patch('/pullstudent/:id', classController.classPullStudentId)
+  .patch('/updateDetail/:id', classController.classPatchStudentId)
+  .patch('/pullDetail/:id', classController.classPullStudentId)
 
 export default classes

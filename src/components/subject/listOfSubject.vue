@@ -10,7 +10,7 @@
             <input type="text" v-model="search" class="form-control" placeholder="Je cherche quelqu'un.." >
             <div class="input-group-append">
               <div class="btn btn-default btn-outline-secondary" :disabled="!search" @click="search = ''">
-                Clear
+                Effacer
               </div>
             </div>
           </div>
@@ -18,13 +18,13 @@
       </div>
       <div class="row mb-3">
         <div class="dropdown justify-content-left mb-3"  style="padding-left:15px; ">
-        <router-link role="button" class="btn btn-secondary cursor" tag="a" :to="{name: 'createClass'}">
+        <router-link role="button" class="btn btn-secondary cursor" tag="a" :to="{name: 'createSubject'}">
           Un Nouveau <i class="fa fa-user-plus"></i>
         </router-link>
         </div>
       </div>
       <div class="table-responsive">
-        <table class="col table table-striped table-hover table-list-search col-11" id="table_format">
+        <table class="col table table-hover table-list-search col-11" id="table_format">
           <thead class="thead-light">
             <tr class="align-text-bottom">
               <th class="text-nowrap" scope="col">Code</th>
@@ -37,7 +37,7 @@
           <tbody v-for="subjectId in filterbyname" :key="subjectId._id"  id="myTable">
             <tr class="content">
               <td>{{subjectId.code}}</td>
-              <td>{{subjectId.subject}}</td>
+              <td>{{subjectId.name}}</td>
               <td>{{subjectId.addedDate}}</td>
               <td><div v-if="subjectId.status">Active</div>
               <div v-else>Terminée</div></td>
@@ -67,7 +67,7 @@ export default {
     filterbyname () {
       if (this.subjects) {
         return this.subjects.filter(subjectId => {
-          return subjectId.subject.toLowerCase().includes(this.search.toLowerCase()) || subjectId.code.toLowerCase().includes(this.search.toLowerCase())
+          return subjectId.name.toLowerCase().includes(this.search.toLowerCase()) || subjectId.code.toLowerCase().includes(this.search.toLowerCase())
         })
       }
     }
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     viewDetails (arg) {
-      this.$router.push({ name: 'manageClass', params: { subjectId: arg } })
+      this.$router.push({ name: 'manageSubject', params: { subjectId: arg } })
     }
   }
 }

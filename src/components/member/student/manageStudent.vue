@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="container ins-container col-10" >
+  <div class="container ins-container col-10">
       <h4 class="text-nowrap text-center w-100 mb-5 form-control-sm heading">
         <strong class="text-uppercase markdown-body">Fiche élève</strong>
       </h4>
@@ -86,9 +86,56 @@
               <input v-model="student.town" type="text" class="form-control is-valid" data-toggle="tooltip" data-placement="bottom" title="Ville" required>
             </div>
           </div>
-          <button class="btn btn-secondary  mb-5">Submit</button>
+          <button class="btn btn-secondary  mb-5">Enregistrer</button>
         </form>
-    </div>
+        </div>
+        <div class="container ins-container col-10">
+        <table class="col table table-striped table-hover mb-0">
+          <thead class="thead-light">
+            <tr class="text-left">
+              <th scope="col">Absence <i class="fa fa-sort-asc"></i></th>
+              <th scope="col">Date <i class="fa fa-sort"></i></th>
+              <th scope="col">Notification <i class="fa fa-sort"></i></th>
+              <th scope="col">Date de Notification <i class="fa fa-sort-desc"></i></th>
+              <th scope="col">Commentaire </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="content">
+              <th>Coran Niveau 1</th>
+              <td>12/12/2018</td>
+              <td>En attente</td>
+              <td>12/12/2018 à 09h30</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <a>
+          <button class="btn btn-secondary mb-2">
+            <i class="fa fa-calendar-plus-o"></i> Ajouter un Absent(e)</button>
+        </a>
+        </div>
+        <div class="container ins-container col-10">
+        <table class="col table table-striped table-hover">
+          <thead class="thead-light">
+            <tr class="text-left">
+              <th scope="col">Classe   <i class="fa fa-sort-asc"></i></th>
+              <th scope="col">Code <i class="fa fa-sort"></i></th>
+              <th scope="col">Année Scolaire <i class="fa fa-sort"></i></th>
+              <th scope="col">Statut <i class="fa fa-sort-desc"></i></th>
+            </tr>
+          </thead>
+          <tbody v-for="classDetails in memberInClass" :key="classDetails._id">
+            <tr class="content">
+              <th>{{classDetails.label}}</th>
+              <th>{{classDetails.code}}</th>
+              <th>{{classDetails.year}}</th>
+              <td><div v-if="classDetails.status">Active</div>
+              <div v-else>Inactive</div></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
 </div>
 </template>
 
@@ -118,12 +165,14 @@ export default {
   computed: {
     ...mapGetters({
       student: 'memberId',
-      members: 'members'
+      members: 'members',
+      memberInClass: 'memberInClass'
     }),
     ...mapActions([('fetchMembersList')])
   },
   created () {
     this.$store.dispatch('fetchMemberId', this.$route.params.memberId)
+    this.$store.dispatch('fetchClassDetailsOfMember', this.$route.params.memberId)
     return this.fetchMembersList
   }
 }

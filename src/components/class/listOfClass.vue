@@ -10,7 +10,7 @@
             <input type="text" v-model="search" class="form-control" placeholder="Je cherche quelqu'un.." >
             <div class="input-group-append">
               <div class="btn btn-default btn-outline-secondary" :disabled="!search" @click="search = ''">
-                Clear
+                Effacer
               </div>
             </div>
           </div>
@@ -24,14 +24,14 @@
         </div>
       </div>
       <div class="table-responsive">
-        <table class="col table table-striped table-hover table-list-search col-11" id="table_format">
+        <table class="col table data-table table-hover table-list-search col-11" id="table_format">
           <thead class="thead-light">
             <tr class="align-text-bottom">
               <th class="text-nowrap" scope="col">Code</th>
               <th class="text-nowrap" scope="col">Nom Classe | Niveau <i class="fa fa-sort-asc"></i></th>
               <th class="text-nowrap" scope="col">Année Scolaire <i class="fa fa-sort"></i></th>
               <th class="text-nowrap" scope="col">Statut</th>
-              <th scope="col">Trimester</th>
+              <th scope="col">Trimestre</th>
               <th class="text-nowrap" scope="col"><i class="fa fa-pencil" aria-hidden="true"></i> / <i class="fa fa-eye"></i> </th>
             </tr>
           </thead>

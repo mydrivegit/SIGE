@@ -32,12 +32,12 @@
             <span style="margin-left:1px;">Matières</span>
           </router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link class="cursor" tag="a" :to="{name: 'notes'}">
             <i aria-hidden="true" class="fa fa-comment-o"></i>
             <span style="margin-left:1px;">Notes</span>
           </router-link>
-        </li>
+        </li> -->
         <li>
           <router-link class="cursor" tag="a" :to="{name: 'register'}">
             <i aria-hidden="true" class="fa fa-book"></i>

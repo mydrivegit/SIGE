@@ -20,7 +20,11 @@ export default new Vuex.Store({
     // Members State
     classes: [],
     memberIdclassesId: [],
-    classId: []
+    classId: [],
+    memberInClass: [],
+    // Subjects State
+    subjects: [],
+    subjectId: []
   },
   actions: {
     login: ({ commit }, authdata) => http.post('/auth/login', authdata),
@@ -117,10 +121,42 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    fetchClassDetailsOfMember ({ commit }, IdParams) {
+      http.get('/classes/ClassDetailsOfMember/' + IdParams)
+        .then(res => {
+          console.log(res)
+          commit('storeMemberInClass', res.data.docs)
+        })
+        .catch(err => {
+          return console.log(err)
+        })
+    },
     modifyClassIdData: ({ commit }, data) => http.patch('/classes/update/' + data.id, data.data),
-    updateStudetnInClass: ({ commit }, data) => http.patch('/classes/updatestudent/' + data.id, data.data),
-    modifyMemberIdFromClass: ({ commit }, data) => http.patch('/classes/pullstudent/' + data.id, data.data),
-    sendEmail: ({ commit }, authdata) => http.post('/email/', authdata)
+    addDetailInClass: ({ commit }, data) => http.patch('/classes/updateDetail/' + data.id, data.data),
+    removeDetailFromClass: ({ commit }, data) => http.patch('/classes/pullDetail/' + data.id, data.data),
+    // email Actions
+    sendEmail: ({ commit }, authdata) => http.post('/email/', authdata),
+    // subject Actions
+    saveSubject: ({ commit }, authdata) => http.post('/subject/', authdata),
+    fetchSubjectList ({ commit }) {
+      http.get('/subject/')
+        .then(res => {
+          commit('storeSubjects', res.data.docs)
+        })
+        .catch(err => {
+          return console.log(err)
+        })
+    },
+    fetchSubjectId ({ commit }, IdParams) {
+      http.get('/subject/' + IdParams)
+        .then(res => {
+          commit('storeSubjectId', res.data.docs)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    modifySubjectIdData: ({ commit }, data) => http.patch('/subject/update/' + data.id, data.data)
   },
   mutations: {
     storeUsers (state, users) {
@@ -161,6 +197,17 @@ export default new Vuex.Store({
     },
     storeClassId (state, classId) {
       state.classId = classId
+    },
+    storeMemberInClass (state, memberInClass) {
+      state.memberInClass = memberInClass
+    },
+    //  Subject Mutation
+    storeSubjects (state, subjects) {
+      state.subjects = subjects
+    },
+    storeSubjectId (state, subjectId) {
+      subjectId.addedDate = moment(subjectId.addedDate).format('DD/MM/YYYY')
+      state.subjectId = subjectId
     }
   },
   getters: {
@@ -180,6 +227,10 @@ export default new Vuex.Store({
     // Class Getters
     classes: (state) => state.classes,
     memberIdclassesId: (state) => state.memberIdclassesId,
-    classId: (state) => state.classId
+    classId: (state) => state.classId,
+    memberInClass: (state) => state.memberInClass,
+    // Families Getters
+    subjects: (state) => state.subjects,
+    subjectId: (state) => state.subjectId
   }
 })

@@ -1,5 +1,4 @@
 import Classes from '../models/class'
-// import Member from '../models/member'
 
 let classPost = (req, res, next) => {
   let classes = new Classes({
@@ -40,7 +39,7 @@ let classGetAll = (req, res, next) => {
 let classGetAllParamsid = (req, res, next) => {
   const id = req.params.id
   Classes.findById(id)
-    .populate('studentIds')
+    .populate('studentIds subjectIds')
     .then((docs) => {
       if (docs) {
         res.status(201).send({
@@ -56,6 +55,29 @@ let classGetAllParamsid = (req, res, next) => {
       console.log(err)
       res.status(500).send({
         message: 'Class not found',
+        error: err.name
+      })
+    })
+}
+
+let ClassGetDetailsOfMember = (req, res, next) => {
+  const id = req.params.id
+  Classes.find({ studentIds: id })
+    .then((docs) => {
+      if (docs) {
+        res.status(201).send({
+          message: 'Here is your details for the requested ID',
+          docs
+        })
+      } else {
+        res.status(204).send({
+          message: 'Class details of student is not found'
+        })
+      }
+    }).catch(err => {
+      console.log(err)
+      res.status(500).send({
+        message: 'Class details of student not found',
         error: err.name
       })
     })
@@ -118,4 +140,4 @@ let classPullStudentId = (req, res, next) => {
     })
 }
 
-export default { classPost, classGetAll, classPullStudentId, classPatchdetailsId, classGetAllParamsid, classPatchStudentId }
+export default { classPost, classGetAll, ClassGetDetailsOfMember, classPullStudentId, classPatchdetailsId, classGetAllParamsid, classPatchStudentId }
