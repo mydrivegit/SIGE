@@ -89,34 +89,36 @@
           <button class="btn btn-secondary  mb-5">Enregistrer</button>
         </form>
         </div>
-        <div class="container ins-container col-10">
+        <div class="container ins-container table-responsive col-10 mb-4">
         <table class="col table table-striped table-hover mb-0">
           <thead class="thead-light">
-            <tr class="text-left">
-              <th scope="col">Absence <i class="fa fa-sort-asc"></i></th>
-              <th scope="col">Date <i class="fa fa-sort"></i></th>
-              <th scope="col">Notification <i class="fa fa-sort"></i></th>
-              <th scope="col">Date de Notification <i class="fa fa-sort-desc"></i></th>
-              <th scope="col">Commentaire </th>
+            <tr class="text-left col">
+              <th style="width: 20vh" scope="col" >Absence <i class="fa fa-sort-asc"></i></th>
+              <th style="width: 20vh" scope="col">Date <i class="fa fa-sort"></i></th>
+              <th style="width: 20vh" scope="col">Matière <i class="fa fa-sort"></i></th>
+              <!-- <th style="width: 20vh" scope="col">Notification <i class="fa fa-sort"></i></th> -->
+              <!--style="width: 30%"  <th scope="col">Date de Notification <i class="fa fa-sort-desc"></i></th> -->
+              <th style="width: 40vh" scope="col">Commentaire </th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="content">
-              <th>Coran Niveau 1</th>
-              <td>12/12/2018</td>
-              <td>En attente</td>
-              <td>12/12/2018 à 09h30</td>
-              <td></td>
+          <tbody v-for="details in attMemberId" :key="details._id">
+            <tr @click="viewAttendence(details._id)" class="cursor content">
+              <th>{{details.classId.label}}</th>
+              <th>{{moment(details.dateOfAttendence).format('L')}}</th>
+              <td>{{details.subjectId.name}}</td>
+              <!-- <td>En attente</td> -->
+              <!-- <td>12/12/2018 à 09h30</td> -->
+              <td>{{details.comment}}</td>
             </tr>
           </tbody>
         </table>
         <a>
-          <button class="btn btn-secondary mb-2">
+          <button @click="addAttendence()"  class="btn btn-secondary mb-2">
             <i class="fa fa-calendar-plus-o"></i> Ajouter un Absent(e)</button>
         </a>
         </div>
-        <div class="container ins-container col-10">
-        <table class="col table table-striped table-hover">
+        <div class="container table-responsive ins-container col-10">
+        <table class="col table  table-striped table-hover">
           <thead class="thead-light">
             <tr class="text-left">
               <th scope="col">Classe   <i class="fa fa-sort-asc"></i></th>
@@ -160,19 +162,27 @@ export default {
           console.log(err)
           this.$swal('Erreur lors de la sauvegarde des détails de ' + this.student.lastname)
         })
+    },
+    addAttendence () {
+      this.$router.push({ name: 'attendence', params: { memberId: this.$route.params.memberId } })
+    },
+    viewAttendence (arg) {
+      this.$router.push({ name: 'manageAttendence', params: { memberId: this.$route.params.memberId, attendenceId: arg } })
     }
   },
   computed: {
     ...mapGetters({
       student: 'memberId',
       members: 'members',
-      memberInClass: 'memberInClass'
+      memberInClass: 'memberInClass',
+      attMemberId: 'attMemberId'
     }),
     ...mapActions([('fetchMembersList')])
   },
   created () {
     this.$store.dispatch('fetchMemberId', this.$route.params.memberId)
     this.$store.dispatch('fetchClassDetailsOfMember', this.$route.params.memberId)
+    this.$store.dispatch('fetchAttMemberId', this.$route.params.memberId)
     return this.fetchMembersList
   }
 }

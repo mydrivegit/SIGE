@@ -13,6 +13,7 @@ import family from './routes/family'
 import classes from './routes/class'
 import email from './routes/email'
 import subject from './routes/subject'
+import attendence from './routes/attendence'
 
 //  app express
 let app = express()
@@ -40,6 +41,7 @@ app.use('/family', family)
 app.use('/classes', classes)
 app.use('/email', email)
 app.use('/subject', subject)
+app.use('/attendence', attendence)
 
 //  Handling error if there any wrong Url is requested
 app.use((req, res, next) => {

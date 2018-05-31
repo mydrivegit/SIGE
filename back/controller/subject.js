@@ -20,15 +20,16 @@ let subjectPost = (req, res, next) => {
 }
 
 let subjectGetAll = (req, res, next) => {
-  Subject.find().exec().then((docs) => {
-    res.status(200).send({
-      message: 'Here is the list of Subjects and their details',
-      success: true,
-      docs
+  Subject.find()
+    .exec().then((docs) => {
+      res.status(200).send({
+        message: 'Here is the list of Subjects and their details',
+        success: true,
+        docs
+      })
+    }).catch((err) => {
+      res.status(500).send(err.message)
     })
-  }).catch((err) => {
-    res.status(500).send(err.message)
-  })
 }
 
 let subjectGetAllParamsid = (req, res, next) => {

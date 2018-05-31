@@ -9,6 +9,8 @@ import managePassword from '@/components/user/managePassword'
 import sidebar from '@/components/sidebar/sidebar'
 import navbar from '@/components/sidebar/navbar'
 import createStudent from '@/components/member/student/createStudent'
+import manageAttendence from '@/components/member/student/manageAttendence'
+import attendenceSheetParticular from '@/components/member/student/attendenceSheetParticular'
 import listOfMembers from '@/components/member/listOfMembers'
 import listOfNonActiveMembers from '@/components/member/listOfNonActiveMembers'
 import manageStudent from '@/components/member/student/manageStudent'
@@ -110,6 +112,20 @@ const router = new Router({
       name: 'manageStudent',
       components: {
         default: manageStudent, navbar, sidebar
+      }
+    },
+    {
+      path: '/manageAttendence/:memberId/:attendenceId',
+      name: 'manageAttendence',
+      components: {
+        default: manageAttendence, navbar, sidebar
+      }
+    },
+    {
+      path: '/attendence/:memberId',
+      name: 'attendence',
+      components: {
+        default: attendenceSheetParticular, navbar, sidebar
       }
     },
     {

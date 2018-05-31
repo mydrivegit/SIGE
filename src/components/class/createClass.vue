@@ -66,7 +66,6 @@ export default {
     register () {
       this.$store.dispatch('saveClass', this.classId)
         .then(res => {
-          console.log(res)
           if (res.status === 201) {
             this.$router.push({name: 'listOfClass'})
             this.$swal('classe ' + this.classId.label + ' Niveau ' + this.classId.level + ' ' + 'est créé')

@@ -24,7 +24,11 @@ export default new Vuex.Store({
     memberInClass: [],
     // Subjects State
     subjects: [],
-    subjectId: []
+    subjectId: [],
+    subjectInMember: [],
+    // Attendence State
+    attMemberId: [],
+    attendenceId: []
   },
   actions: {
     login: ({ commit }, authdata) => http.post('/auth/login', authdata),
@@ -124,7 +128,6 @@ export default new Vuex.Store({
     fetchClassDetailsOfMember ({ commit }, IdParams) {
       http.get('/classes/ClassDetailsOfMember/' + IdParams)
         .then(res => {
-          console.log(res)
           commit('storeMemberInClass', res.data.docs)
         })
         .catch(err => {
@@ -156,7 +159,29 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-    modifySubjectIdData: ({ commit }, data) => http.patch('/subject/update/' + data.id, data.data)
+    modifySubjectIdData: ({ commit }, data) => http.patch('/subject/update/' + data.id, data.data),
+    // Attendence Actions
+    saveAttendence: ({ commit }, authdata) => http.post('/attendence/', authdata),
+    fetchAttMemberId ({ commit }, IdParams) {
+      http.get('/attendence/member/' + IdParams)
+        .then(res => {
+          commit('storeAttMemberId', res.data.docs)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    fetchAttendenceId ({ commit }, IdParams) {
+      http.get('/attendence/' + IdParams)
+        .then(res => {
+          commit('storeAttendenceId', res.data.docs)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    modifyAttendenceIdData: ({ commit }, data) => http.patch('/attendence/update/' + data.id, data.data),
+    deleteAttendenceIdData: ({ commit }, IdParams) => http.delete('/attendence/' + IdParams)
   },
   mutations: {
     storeUsers (state, users) {
@@ -208,6 +233,17 @@ export default new Vuex.Store({
     storeSubjectId (state, subjectId) {
       subjectId.addedDate = moment(subjectId.addedDate).format('DD/MM/YYYY')
       state.subjectId = subjectId
+    },
+    // Attendence Mutation
+    storeAttMemberId (state, attMemberId) {
+      attMemberId.dateOfAttendence = moment(attMemberId.dateOfAttendence).format('DD/MM/YYYY')
+      state.attMemberId = attMemberId
+    },
+    storeAttendenceId (state, attendenceId) {
+      if (attendenceId) {
+        attendenceId.dateOfAttendence = moment(attendenceId.dateOfAttendence).format('DD/MM/YYYY')
+      }
+      state.attendenceId = attendenceId
     }
   },
   getters: {
@@ -231,6 +267,9 @@ export default new Vuex.Store({
     memberInClass: (state) => state.memberInClass,
     // Families Getters
     subjects: (state) => state.subjects,
-    subjectId: (state) => state.subjectId
+    subjectId: (state) => state.subjectId,
+    // Attendence Getters
+    attMemberId: (state) => state.attMemberId,
+    attendenceId: (state) => state.attendenceId
   }
 })

@@ -190,7 +190,6 @@ export default {
     send () {
       this.$store.dispatch('sendEmail', this.sendEmail)
         .then(res => {
-          console.log(res)
           if (res.request.status === 200) {
             this.$router.push({name: 'listOfMembers'})
             this.$swal('envoyer un e-mail aux membres sélectionnés')

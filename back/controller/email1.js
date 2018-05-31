@@ -12,9 +12,6 @@ let emailGet = (req, res) => {
   // req.body.content = 'this my email'
   // req.body.title = 'this my email'
 
-  console.log(req.body.emails)
-  console.log(req.body.content)
-
   let msg = {
     to: req.body.emails,
     from: 'contact@shaik.com',
