@@ -1,16 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// importing multiple files
-import state from './state'
-import actions from './actions'
-import mutations from './mutations'
-import getters from './getters'
+// Importing Modules
+import user from '@/store/modules/user'
+import member from '@/store/modules/member'
+import family from '@/store/modules/family'
+import subject from '@/store/modules/subject'
+import classes from '@/store/modules/classes'
+import attendence from '@/store/modules/attendence'
+import email from '@/store/modules/email'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state,
-  actions,
-  mutations,
-  getters
+  modules: {
+    user,
+    member,
+    family,
+    subject,
+    classes,
+    attendence,
+    email
+  }
 })
