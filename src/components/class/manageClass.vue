@@ -133,15 +133,12 @@ export default {
       this.$router.push({ name: 'addSubjectInClass', params: { classId: this.$route.params.classId } })
     },
     removeStudentId (arg) {
+      this.classId.studentIds.splice(arg, 1)
       this.$store.dispatch('removeDetailFromClass', {id: this.$route.params.classId, data: {studentIds: arg}})
         .then(res => {
           if (res.status === 201) {
             this.$router.push({name: 'manageClass'})
-            window.location.reload()
             this.$swal('le membre est retiré de la classe')
-            setTimeout(() => {
-              location.reload(true)
-            }, 1500)
           }
         })
         .catch(err => {
@@ -150,15 +147,12 @@ export default {
         })
     },
     removeSubjectId (arg) {
+      this.classId.subjectIds.splice(arg, 1)
       this.$store.dispatch('removeDetailFromClass', {id: this.$route.params.classId, data: {subjectIds: arg}})
         .then(res => {
           if (res.status === 201) {
             this.$router.push({name: 'manageClass'})
-            window.location.reload()
             this.$swal('Matiére est retiré de la classe')
-            setTimeout(() => {
-              location.reload(true)
-            }, 1500)
           }
         })
         .catch(err => {

@@ -10,7 +10,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run e2e",
     "lint": "eslint --ext .js,.vue src test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "postinstall": "npm build --aot --target=prodiuction"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.2.1",
@@ -80,8 +81,8 @@
     "webpack-merge": "^4.1.0"
   },
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": "9.11.1",
+    "npm": "6.0.1"
   },
   "browserslist": [
     "> 1%",

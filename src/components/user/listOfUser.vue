@@ -12,7 +12,7 @@
           <th class="text-nowrap" scope="col">Inactif</th>
         </tr>
       </thead>
-      <tbody id="myTable" v-for="user in users" :key="user._id" v-if="user.status">
+      <tbody id="myTable" v-for="user in filterByStatus" :key="user._id">
         <tr class="content">
           <td>{{user.username}}</td>
           <td>{{user.firstname}}</td>
@@ -37,11 +37,8 @@ export default {
       this.$router.push({ name: 'manageUser', params: { userId: arg } })
     },
     changeUserStatus (arg) {
-      let _data = {
-        status: false,
-        role: 'User'
-      }
-      this.$store.dispatch('modifyUserIdData', { data: _data, id: arg })
+      // this.filterByStatus.splice(arg, 1)
+      this.$store.dispatch('modifyUserIdData', { data: { status: false, role: 'User' }, id: arg })
         .then(res => {
           if (res.data) {
             this.$swal('Utilisateur desactivé avec succès')
@@ -55,7 +52,14 @@ export default {
   },
   computed: {
     ...mapActions([('fetchUsersList')]),
-    ...mapGetters(['users'])
+    ...mapGetters(['users']),
+    filterByStatus () {
+      if (this.users) {
+        return this.users.filter(user => {
+          return user.status
+        })
+      }
+    }
   }
 
 }

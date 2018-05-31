@@ -160,11 +160,11 @@ export default {
       this.$router.push({ name: 'addStudentInFamily', params: { memberId: this.$route.params.memberId } })
     },
     removedId (arg) {
+      this.studentInFamily.splice(arg, 1)
       this.$store.dispatch('modifyMemberIdData', {id: arg, data: {familyId: '', memberToFamily: false}})
         .then(res => {
           if (res.status === 201) {
             this.$router.push({name: 'manageFamily'})
-            window.location.reload()
             this.$swal('le membre est retiré de la liste')
           }
         })
@@ -176,6 +176,8 @@ export default {
   },
   computed: {
     ...mapGetters({family: 'familyId', studentInFamily: 'StudentInFamilies'})
+  },
+  watch: {
   },
   created () {
     this.$store.dispatch('fetchFamilyId', this.$route.params.memberId)

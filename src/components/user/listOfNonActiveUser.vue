@@ -11,7 +11,7 @@
           <th class="text-nowrap" scope="col">Activer l'utilisateur</th>
         </tr>
       </thead>
-      <tbody id="myTable" v-for="user in users" :key="user._id" v-if="!user.status">
+      <tbody id="myTable" v-for="user in filterByStatus" :key="user._id">
         <tr class="content">
           <td>{{user.username}}</td>
           <td>{{user.firstname}}</td>
@@ -35,10 +35,8 @@ export default {
       this.$router.push({ name: 'manageUser', params: { userId: arg } })
     },
     changeUserStatus (arg) {
-      let _data = {
-        status: true
-      }
-      this.$store.dispatch('modifyUserIdData', { data: _data, id: arg })
+      // this.filterByStatus.splice(arg, 1)
+      this.$store.dispatch('modifyUserIdData', { data: { status: true }, id: arg })
         .then(res => {
           if (res.data) {
             this.$swal('Utilisateur activé avec succès')
@@ -52,9 +50,15 @@ export default {
   },
   computed: {
     ...mapActions([('fetchUsersList')]),
-    ...mapGetters(['users'])
+    ...mapGetters(['users']),
+    filterByStatus () {
+      if (this.users) {
+        return this.users.filter(user => {
+          return !user.status
+        })
+      }
+    }
   }
-
 }
 </script>
 

@@ -52,7 +52,7 @@
               <div class="form-inline">
                 <label class="form-group font-weight-bold col-md-6 justify-content-start text-nowrap">Rôle :</label>
                 <div class="form-group col-md-2">
-                  <select  v-model="user.role" v-if="show"  class="form-control form-control-sm" required>
+                  <select  v-model="users.role" v-if="show"  class="form-control form-control-sm" required>
                     <option disabled value='null'>Sélectionnez le rôle......</option>
                     <option value='Admin'>Administrateur</option>
                     <option value='User'>Utilisateur</option>
