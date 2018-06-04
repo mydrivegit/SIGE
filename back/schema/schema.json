@@ -1,0 +1,358 @@
+{
+	"attendences": {
+		"_id": {
+			"type": "Object",
+			"required": true
+		},
+		"status": {
+			"type": "boolean",
+			"required": true
+		},
+		"memberId": {
+			"type": "Object",
+			"required": true
+		},
+		"classId": {
+			"type": "Object",
+			"required": true
+		},
+		"subjectId": {
+			"type": "Object",
+			"required": true
+		},
+		"member": {
+			"type": "string",
+			"required": true
+		},
+		"comment": {
+			"type": "string",
+			"required": true
+		},
+		"dateOfAttendence": {
+			"type": "Date",
+			"required": true
+		}
+	},
+	"members": {
+		"_id": {
+			"type": "Object",
+			"required": true
+		},
+		"roleStudent": {
+			"type": "boolean",
+			"required": true
+		},
+		"roleProf": {
+			"type": "boolean",
+			"required": true
+		},
+		"roleInCharge": {
+			"type": "boolean",
+			"required": true
+		},
+		"firstname": {
+			"type": "string",
+			"required": true
+		},
+		"lastname": {
+			"type": "string",
+			"required": true
+		},
+		"email": {
+			"type": "string",
+			"required": true
+		},
+		"mobileNo": {
+			"type": "string",
+			"required": true
+		},
+		"telephone": {
+			"type": "string",
+			"required": true
+		},
+		"status": {
+			"type": "boolean",
+			"required": true
+		},
+		"class": {
+			"type": "string",
+			"required": false
+		},
+		"inCharge": {
+			"type": "string",
+			"required": true
+		},
+		"dob": {
+			"type": "Date",
+			"required": true
+		},
+		"gender": {
+			"type": "string",
+			"required": true
+		},
+		"address": {
+			"type": "string",
+			"required": true
+		},
+		"town": {
+			"type": "string",
+			"required": true
+		},
+		"cp": {
+			"type": "string",
+			"required": true
+		},
+		"role": {
+			"type": "string",
+			"required": true
+		},
+		"page": {
+			"type": "string",
+			"required": true
+		},
+		"familyId": {
+			"type": "string",
+			"required": true
+		},
+		"memberToFamily": {
+			"type": "boolean",
+			"required": true
+		}
+	},
+	"users": {
+		"_id": {
+			"type": "Object",
+			"required": true
+		},
+		"username": {
+			"type": "string",
+			"required": true
+		},
+		"password": {
+			"type": "string",
+			"required": true
+		},
+		"firstname": {
+			"type": "string",
+			"required": true
+		},
+		"lastname": {
+			"type": "string",
+			"required": true
+		},
+		"mobileNo": {
+			"type": "number",
+			"required": true
+		},
+		"role": {
+			"type": "string",
+			"required": true
+		},
+		"email": {
+			"type": "string",
+			"required": true
+		},
+		"status": {
+			"type": "boolean",
+			"required": true
+		}
+	},
+	"subjects": {
+		"_id": {
+			"type": "Object",
+			"required": true
+		},
+		"code": {
+			"type": "string",
+			"required": true
+		},
+		"name": {
+			"type": "string",
+			"required": true
+		},
+		"addedDate": {
+			"type": "Date",
+			"required": true
+		},
+		"status": {
+			"type": "boolean",
+			"required": true
+		}
+	},
+	"classes": {
+		"_id": {
+			"type": "Object",
+			"required": true
+		},
+		"studentIds": {
+			"type": "Array",
+			"required": true
+		},
+		"subjectIds": {
+			"type": "Array",
+			"required": true
+		},
+		"code": {
+			"type": "string",
+			"required": true
+		},
+		"year": {
+			"type": "string",
+			"required": true
+		},
+		"semester": {
+			"type": "number",
+			"required": true
+		},
+		"label": {
+			"type": "string",
+			"required": true
+		},
+		"level": {
+			"type": "string",
+			"required": true
+		},
+		"status": {
+			"type": "boolean",
+			"required": true
+		}
+	},
+	"students": {
+		"_id": {
+			"type": "Object",
+			"required": true
+		},
+		"firstname": {
+			"type": "string",
+			"required": true
+		},
+		"lastname": {
+			"type": "string",
+			"required": true
+		},
+		"email": {
+			"type": "string",
+			"required": true
+		},
+		"mobileNo": {
+			"type": "string",
+			"required": true
+		},
+		"status": {
+			"type": "boolean",
+			"required": true
+		},
+		"class": {
+			"type": "string",
+			"required": true
+		},
+		"inCharge": {
+			"type": "string",
+			"required": true
+		},
+		"dob": {
+			"type": "Date",
+			"required": true
+		},
+		"gender": {
+			"type": "string",
+			"required": true
+		},
+		"address": {
+			"type": "string",
+			"required": true
+		},
+		"town": {
+			"type": "string",
+			"required": true
+		},
+		"cp": {
+			"type": "string",
+			"required": true
+		},
+		"roleInCharge": {
+			"type": "boolean",
+			"required": true
+		},
+		"roleStudent": {
+			"type": "boolean",
+			"required": true
+		},
+		"telephone": {
+			"type": "string",
+			"required": true
+		},
+		"role": {
+			"type": "string",
+			"required": true
+		}
+	},
+	"emails": {
+		"_id": {
+			"type": "Object",
+			"required": true
+		},
+		"title": {
+			"type": "string",
+			"required": true
+		},
+		"content": {
+			"type": "string",
+			"required": true
+		},
+		"emails": {
+			"type": "string",
+			"required": true
+		},
+		"sendTime": {
+			"type": "Date",
+			"required": true
+		},
+		"senderId": {
+			"type": "string",
+			"required": true
+		}
+	},
+	"families": {
+		"_id": {
+			"type": "Object",
+			"required": true
+		},
+		"title": {
+			"type": "string",
+			"required": true
+		},
+		"year": {
+			"type": "string",
+			"required": true
+		},
+		"type": {
+			"type": "string",
+			"required": true
+		},
+		"status": {
+			"type": "string",
+			"required": true
+		},
+		"validatedOn": {
+			"type": "Date",
+			"required": false
+		},
+		"code": {
+			"type": "string",
+			"required": true
+		},
+		"comments": {
+			"type": "string",
+			"required": true
+		},
+		"inCharge": {
+			"type": "string",
+			"required": true
+		},
+		"registeredOn": {
+			"type": "Date",
+			"required": true
+		}
+	}
+}

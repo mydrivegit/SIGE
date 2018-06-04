@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://vanya.jp.net/vtree/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Online JSON to Tree Diagram Converter</title>
+
+<link rel="stylesheet" href="./Online JSON to Tree Diagram Converterheaders_files/vtree.css" type="text/css">
+
+<script src="./Online JSON to Tree Diagram Converterheaders_files/d3.v3.min.js" charset="utf-8"></script><style id="dark-reader-style" type="text/css">@media screen {
+
+/* Leading rule */
+html {
+  -webkit-filter: brightness(90%) contrast(90%) grayscale(20%) sepia(10%) !important;
+  filter: brightness(90%) contrast(90%) grayscale(20%) sepia(10%) !important;
+}
+
+/* Text contrast */
+html {
+  text-shadow: 0 0 0 !important;
+}
+
+/* Full screen */
+:-webkit-full-screen, :-webkit-full-screen * {
+  -webkit-filter: none !important;
+  filter: none !important;
+}
+:-moz-full-screen, :-moz-full-screen * {
+  -webkit-filter: none !important;
+  filter: none !important;
+}
+:fullscreen, :fullscreen * {
+  -webkit-filter: none !important;
+  filter: none !important;
+}
+
+/* Page background */
+html {
+  background: rgb(227,224,218) !important;
+}
+
+}</style>
+<script src="./Online JSON to Tree Diagram Converterheaders_files/vtree.js"></script>
+
+<!-- How to use debug mode.
+  1. open browser's developer tools.
+  2. input the following command.
+     vt.debug(true).update()
+-->
+
+<script type="text/javascript">
+var vt;
+
+window.onload = function () {
+  var container = document.getElementById("container");
+  var msg = document.getElementById("msg");
+  vt = new VTree(container);
+  var reader = new VTree.reader.Object();
+
+  function updateTree() {
+    var s = document.getElementById("from-text").value;
+
+    msg.innerHTML = '';
+
+    try {
+      var jsonData = JSON.parse(s);
+    } catch (e) {
+      msg.innerHTML = 'JSON parse error: ' + e.message;
+    }
+
+    var data = reader.read(jsonData);
+
+    vt.data(data)
+      .update();
+  }
+
+  document.getElementById("go-button").onclick = updateTree;
+
+  updateTree();
+};
+
+</script>
+
+<link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css"></head>
+
+<body cz-shortcut-listen="true">
+  <div class="container">
+
+    <h1>Online JSON to Tree Diagram Converter</h1>
+
+    <p style="text-align: right;"><a href="https://github.com/ivan111/vtree">github</a></p>
+
+    <p>converts JSON strings into tree diagrams. For example, it is used to show AST(Abstract Syntax Tree) as tree diagrams for debugging. In such case, of course, you need to translate AST into JSON.</p>
+
+    <div style="margin-top: 1em;">
+      <textarea id="from-text" rows="6" cols="80">[{ "array": [ 1, 2, 3 ], "boolean": true, "null": null, "number": 123, "object": { "a": "b", "c": "d", "e": "f" }, "string": "Hello World" }, { "|": "|", "  ": { "ʕ": "" }, " ": ["◕", [ { "hello! ": "&lt;ﾆフ" } ], "◕"], "_": { "": "ʔ" } }]</textarea>
+    </div>
+
+    <div style="margin-top: 1em;">
+      <input id="go-button" type="button" value="Visualize">
+    </div>
+
+    <div id="msg" style="color: red;"></div>
+
+    <div id="container"><svg class="vtree" width="960" height="800"><g class="vtree-root" transform="translate(-396.6446161118704,-1.0497704485483155)scale(1.6841259072168353)"><g class="vtree-node" transform="translate(480,318)"><g class="vtree-node" transform="translate(-8,0)"><path class="vtree-link" d="M8,4C8,43 8,43 8,82"></path><g class="vtree-node" transform="translate(-40,58)"><path class="vtree-link" d="M48,24C48,63 304,63 304,102"></path><path class="vtree-link" d="M48,24C48,63 238,63 238,102"></path><path class="vtree-link" d="M48,24C48,63 169,63 169,102"></path><path class="vtree-link" d="M48,24C48,63 96,63 96,102"></path><path class="vtree-link" d="M48,24C48,63 24,63 24,102"></path><path class="vtree-link" d="M48,24C48,63 -41,63 -41,102"></path><path class="vtree-link" d="M48,24C48,63 -108,63 -108,102"></path><path class="vtree-link" d="M48,24C48,63 -196,63 -196,102"></path><g class="vtree-node" transform="translate(-240,78)"><g transform="translate(36,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="44" y="16" text-anchor="middle">Attendences</text></g></g><g class="vtree-node" transform="translate(-142,78)"><g transform="translate(26,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="34" y="16" text-anchor="middle">Members</text></g></g><g class="vtree-node" transform="translate(-64,78)"><g transform="translate(15,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="23" y="16" text-anchor="middle">Users</text></g></g><g class="vtree-node" transform="translate(-8,78)"><g transform="translate(24,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="32" y="16" text-anchor="middle">Subjects</text></g></g><g class="vtree-node" transform="translate(66,78)"><g transform="translate(22,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="30" y="16" text-anchor="middle">Classes</text></g></g><g class="vtree-node" transform="translate(136,78)"><g transform="translate(25,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="33" y="16" text-anchor="middle">Students</text></g></g><g class="vtree-node" transform="translate(212,78)"><g transform="translate(18,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="26" y="16" text-anchor="middle">Emails</text></g></g><g class="vtree-node" transform="translate(273,78)"><g transform="translate(23,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="31" y="16" text-anchor="middle">Families</text></g></g><g transform="translate(40,20)"><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g><g><text x="48" y="16" text-anchor="middle">SIGESchema</text></g></g><g transform="translate(0,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g><g transform="translate(8,0)"><rect class="string-text" x="0" y="0" width="8" height="8"></rect><text x="4" y="4"> </text></g></g></g></g></svg></div>
+
+    <p style="text-align: right;">Created Date: 2014-07-27, Modified Date: 2017-03-18</p>
+
+  </div>
+
+
+
+</body></html>

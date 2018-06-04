@@ -60,12 +60,25 @@ app.use((err, req, res, next) => {
 })
 
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost:' + process.env.MONGOSERVERPORT + '/sige', {}, (err) => {
-  if (err) {
-    throw err
-  } else {
-    console.log('Mongodb connected on port:' + process.env.MONGOSERVERPORT)
-    let port = process.env.PORT || 3000
-    app.listen(port, () => console.log('SIGE app for backend precess is listening on port ' + port + '!'))
-  }
-})
+let env = process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+if (env === 'development') {
+  mongoose.connect('mongodb://localhost:' + process.env.MONGOSERVERPORT + '/sige', {}, (err) => {
+    if (err) {
+      throw err
+    } else {
+      console.log('Mongodb connected on port:' + process.env.MONGOSERVERPORT)
+      let port = process.env.PORT || 3000
+      app.listen(port, () => console.log('SIGE app for backend precess is listening on port ' + port + '!'))
+    }
+  })
+} else {
+  mongoose.connect(process.env.MONGODB_URL, {}, (err) => {
+    if (err) {
+      throw err
+    } else {
+      console.log('Mongodb connected with MLAB')
+      let port = process.env.PORT || 3000
+      app.listen(port, () => console.log('SIGE app for backend precess is listening on port ' + port + '!'))
+    }
+  })
+}
